@@ -1,8 +1,9 @@
 package oop.koyomia.boomberman.desktop;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import oop.koyomia.boomberman.GameAplication;
+import oop.koyomia.boomberman.GameScene;
 
 /**
  * The type Desktop launcher.
@@ -14,8 +15,7 @@ public class DesktopLauncher {
 	 * @param arg the input arguments
 	 */
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.forceExit = false;
-		new LwjglApplication(new GameAplication(), config);
+		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		new Lwjgl3Application(new GameScene(), config);
 	}
 }
