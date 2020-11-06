@@ -14,5 +14,6 @@ public class GameUtils {
             batch.draw(entity.getGraphicComponent().getTexture(), entity.getGraphicComponent().getX(), entity.getGraphicComponent().getY(), entity.getGraphicComponent().getWidth(), entity.getGraphicComponent().getHeight());
         }
         batch.end();
+
     }
 }
