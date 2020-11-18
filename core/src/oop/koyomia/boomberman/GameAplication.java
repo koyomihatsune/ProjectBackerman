@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import oop.koyomia.boomberman.GameObject.ObjectType;
 
 
 // Just for Test
@@ -25,7 +26,7 @@ public class GameAplication extends ApplicationAdapter {
 	SpriteBatch spriteBatch;
 	long time = System.currentTimeMillis();
 	float stateTime = 0f;
-
+	ObjectType type;
 	OrthographicCamera camera;
 	ExtendViewport viewport;
 
@@ -34,10 +35,10 @@ public class GameAplication extends ApplicationAdapter {
 
 		camera = new OrthographicCamera();
 		viewport = new ExtendViewport(800, 600, camera);
-
+		ObjectType.valueOf("Wall");
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		/*
+
 		walkSheet = new Texture("animate_test.png");
 		TextureRegion[][] tmp = TextureRegion.split(walkSheet,
 				walkSheet.getWidth() / FRAME_COLS,
@@ -56,7 +57,7 @@ public class GameAplication extends ApplicationAdapter {
 		}
 		// Initialize the Animation with the frame interval and array of frames
 		walkAnimation = new Animation<TextureRegion>(0.025f, walkFrames);
-        */
+
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class GameAplication extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, 0, 0);
-		//batch.draw(walkAnimation.getKeyFrame(stateTime), 100, 100);
+		batch.draw(walkAnimation.getKeyFrame(stateTime), 100, 100);
 		batch.end();
 	}
 

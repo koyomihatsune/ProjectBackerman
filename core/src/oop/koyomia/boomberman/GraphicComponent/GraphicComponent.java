@@ -1,51 +1,39 @@
 package oop.koyomia.boomberman.GraphicComponent;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import org.jetbrains.annotations.NotNull;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
+import oop.koyomia.boomberman.GameObject.GameObject;
 
-public class GraphicComponent {
-    protected int x;
-    protected int y;
-    protected int width;
-    protected int height;
-    protected Texture texture;
+import java.util.List;
 
-    public int getY() {
-        return y;
+public abstract class GraphicComponent {
+    protected GameObject self;
+    public GraphicComponent(@NotNull GameObject self) {
+        this.self = self;
     }
 
-    public int getX() {
-        return x;
+    public float getX() {
+        return this.self.getCell().getX();
     }
 
-    public int getWidth() {
-        return width;
+    public float getY() {
+        return this.self.getCell().getY();
     }
 
-    public int getHeight() {
-        return height;
+    public void setX(float x) {
+        this.self.getCell().setX(x);
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setY(float y) {
+        this.self.getCell().setY(y);
     }
 
-    public void setHeight(int physics_height) {
-        this.height = height;
+    public TiledMapTile getTile() {
+        return this.self.getCell().getTile();
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
+    public abstract void update(@NotNull List<GameObject> world, float delta);
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
 }

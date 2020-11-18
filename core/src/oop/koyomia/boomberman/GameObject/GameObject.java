@@ -1,18 +1,18 @@
 package oop.koyomia.boomberman.GameObject;
-
-import com.badlogic.gdx.graphics.Texture;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GraphicComponent.GraphicComponent;
 
 import java.util.Comparator;
+import java.util.List;
 
 public abstract class GameObject {
+    protected String type;
     protected GraphicComponent graphicComponent;
-    // protected GameObject particles;
+    protected TiledMapTileLayerExt.FreeCell cell;
 
-    protected int layerLevel;
-
-    public GameObject() {
-        this.graphicComponent = new GraphicComponent();
+    public GameObject(TiledMapTileLayerExt.FreeCell cell) {
+        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
+        this.cell = cell;
     }
 
     public GraphicComponent getGraphicComponent() {
@@ -23,7 +23,9 @@ public abstract class GameObject {
         this.graphicComponent = graphicComponent;
     }
 
-    public static Comparator<GameObject> sortByLayer() {
-        return (o1, o2) -> Integer.compare(o1.layerLevel, o2.layerLevel);
+    public TiledMapTileLayerExt.FreeCell getCell() {
+        return this.cell;
     }
+
+    public abstract void update(List<GameObject> world, float delta);
 }

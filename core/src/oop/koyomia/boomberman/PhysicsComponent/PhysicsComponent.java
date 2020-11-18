@@ -1,40 +1,37 @@
 package oop.koyomia.boomberman.PhysicsComponent;
 
-public class PhysicsComponent {
-    protected int physics_x;
-    protected int physics_y;
-    protected int physics_width;
-    protected int physics_height;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Rectangle;
+import org.jetbrains.annotations.NotNull;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
+import oop.koyomia.boomberman.GameObject.GameObject;
 
-    public int getPhysics_height() {
-        return physics_height;
+import java.util.List;
+
+
+public abstract class PhysicsComponent {
+
+    protected GameObject self;
+
+    public PhysicsComponent(@NotNull GameObject self) {
+        this.self = self;
     }
 
-    public int getPhysics_width() {
-        return physics_width;
+    public Rectangle getRectangleBody() {
+        RectangleMapObject recBody =(RectangleMapObject) this.self.getCell().getTile().getObjects().get("collision");
+        return recBody.getRectangle();
     }
 
-    public int getPhysics_x() {
-        return physics_x;
+    public boolean isCollided(RectangleMapObject otherBody) {
+        return otherBody.getRectangle().overlaps(this.getRectangleBody());
     }
 
-    public int getPhysics_y() {
-        return physics_y;
+    public void setRectangleBody(@NotNull Rectangle otherRec) {
+        this.getRectangleBody().set(otherRec);
     }
 
-    public void setPhysics_x(int physics_x) {
-        this.physics_x = physics_x;
-    }
+    public abstract void update(List<GameObject> world, float delta);
 
-    public void setPhysics_y(int physics_y) {
-        this.physics_y = physics_y;
-    }
-
-    public void setPhysics_height(int physics_height) {
-        this.physics_height = physics_height;
-    }
-
-    public void setPhysics_width(int physics_width) {
-        this.physics_width = physics_width;
-    }
 }

@@ -32,7 +32,8 @@ public class IngameScreen implements Screen {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
+        // GameUtils.renderFrame(game.batch, world);
+        //game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
         game.batch.end();
     }
 
