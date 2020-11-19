@@ -17,11 +17,12 @@ public class GameObject {
     protected GraphicSystem graphicSystem;
     protected PhysicsSystem physicsSystem;
     protected InputSystem inputSystem;
-    protected TiledMapTileLayerExt.FreeCell cell;
+     protected TiledMapTileLayerExt.FreeCell cell;
 
-    public GameObject(TiledMapTileLayerExt.FreeCell cell) {
-        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
-        this.cell = cell;
+    public GameObject(/* TiledMapTileLayerExt.FreeCell cell */) {
+//        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
+//        this.cell = cell;
+
     }
 
     public String getType() {
@@ -94,5 +95,5 @@ public class GameObject {
         this.inputSystem.update(world, delta);
         this.physicsSystem.update(world, delta);
         this.graphicSystem.update(world, delta);
-    };
+    }
 }

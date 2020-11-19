@@ -17,21 +17,9 @@ public class PhysicsSystemDefault implements PhysicsSystem {
         this.self = self;
     }
 
-    public Rectangle getRectangleBody() {
-        RectangleMapObject recBody =(RectangleMapObject) this.self.getCell().getTile().getObjects().get("collision");
-        return recBody.getRectangle();
+    @Override
+    public void update(@NotNull List<GameObject> world, float delta) {
+
     }
-
-    public boolean isCollided(RectangleMapObject otherBody) {
-        return otherBody.getRectangle().overlaps(this.getRectangleBody());
-    }
-
-    public void setRectangleBody(@NotNull Rectangle otherRec) {
-        this.getRectangleBody().set(otherRec);
-    }
-
-    public void update(List<GameObject> world, float delta) {
-
-    };
 
 }
