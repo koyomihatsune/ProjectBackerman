@@ -23,7 +23,9 @@ public class MenuScreen implements Screen {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    game.setScreen(new IngameScreen(game));
+                    IngameScreen ingameScreen = new IngameScreen(game);
+                    game.setScreen(ingameScreen);
+                    Gdx.input.setInputProcessor(ingameScreen);
                 }
                 return true;
             }

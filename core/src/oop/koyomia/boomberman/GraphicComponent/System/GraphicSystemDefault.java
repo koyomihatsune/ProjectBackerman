@@ -1,16 +1,15 @@
-package oop.koyomia.boomberman.GraphicComponent;
+package oop.koyomia.boomberman.GraphicComponent.System;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
 import org.jetbrains.annotations.NotNull;
-import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
 import java.util.List;
 
-public abstract class GraphicComponent {
+public class GraphicSystemDefault implements GraphicSystem {
     protected GameObject self;
-    public GraphicComponent(@NotNull GameObject self) {
+    public GraphicSystemDefault(@NotNull GameObject self) {
         this.self = self;
     }
 
@@ -34,6 +33,8 @@ public abstract class GraphicComponent {
         return this.self.getCell().getTile();
     }
 
-    public abstract void update(@NotNull List<GameObject> world, float delta);
+    public void update(@NotNull List<GameObject> world, float delta) {
+
+    };
 
 }

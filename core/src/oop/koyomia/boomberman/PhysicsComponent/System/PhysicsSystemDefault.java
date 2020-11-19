@@ -1,21 +1,19 @@
-package oop.koyomia.boomberman.PhysicsComponent;
+package oop.koyomia.boomberman.PhysicsComponent.System;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
+import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 import org.jetbrains.annotations.NotNull;
-import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
 import java.util.List;
 
 
-public abstract class PhysicsComponent {
+public class PhysicsSystemDefault implements PhysicsSystem {
 
     protected GameObject self;
 
-    public PhysicsComponent(@NotNull GameObject self) {
+    public PhysicsSystemDefault(@NotNull GameObject self) {
         this.self = self;
     }
 
@@ -32,6 +30,8 @@ public abstract class PhysicsComponent {
         this.getRectangleBody().set(otherRec);
     }
 
-    public abstract void update(List<GameObject> world, float delta);
+    public void update(List<GameObject> world, float delta) {
+
+    };
 
 }
