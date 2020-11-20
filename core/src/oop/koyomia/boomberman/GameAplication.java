@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import oop.koyomia.boomberman.GameObject.ObjectType;
 
@@ -29,10 +31,9 @@ public class GameAplication extends ApplicationAdapter {
 	ObjectType type;
 	OrthographicCamera camera;
 	ExtendViewport viewport;
-
+	TiledMap map;
 	@Override
 	public void create () {
-
 		camera = new OrthographicCamera();
 		viewport = new ExtendViewport(800, 600, camera);
 		ObjectType.valueOf("Wall");
@@ -56,7 +57,7 @@ public class GameAplication extends ApplicationAdapter {
 			}
 		}
 		// Initialize the Animation with the frame interval and array of frames
-		walkAnimation = new Animation<TextureRegion>(0.025f, walkFrames);
+		walkAnimation = new Animation<>(0.025f, walkFrames);
 
 	}
 

@@ -2,11 +2,18 @@ package oop.koyomia.boomberman.PhysicsComponent.State;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
+// Unmoveable State
 public class PhysicsStateDefault implements PhysicsState {
     protected GameObject self;
+    protected float x_vel = 0;
+    protected float y_vel = 0;
 
+    PhysicsStateDefault(GameObject self) {
+        this.self = self;
+    }
     /**
      * Get physics body in standard coordinate system
      *
@@ -36,5 +43,25 @@ public class PhysicsStateDefault implements PhysicsState {
             System.err.println("ko the set physics body cho 1 doi tuong khong co collision object");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public float getXVel() {
+        return 0;
+    }
+
+    @Override
+    public float getYVel() {
+        return 0;
+    }
+
+    @Override
+    public void setXVel(float x_vel) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setYVel(float y_vel) {
+        throw new UnsupportedOperationException();
     }
 }

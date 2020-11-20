@@ -12,6 +12,10 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 public class GraphicStateDefault implements GraphicState {
     protected GameObject self;
 
+    public GraphicStateDefault(GameObject self) {
+        this.self = self;
+    }
+
     @Override
     public void setTile(TiledMapTile tile) {
         self.getCell().setTile(tile);

@@ -19,9 +19,9 @@ public class GameObject {
     protected InputSystem inputSystem;
      protected TiledMapTileLayerExt.FreeCell cell;
 
-    public GameObject(/* TiledMapTileLayerExt.FreeCell cell */) {
-//        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
-//        this.cell = cell;
+    public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
+        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
+        this.cell = cell;
 
     }
 
