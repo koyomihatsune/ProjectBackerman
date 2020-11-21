@@ -11,7 +11,7 @@ public class PhysicsStateDefault implements PhysicsState {
     protected float x_vel = 0;
     protected float y_vel = 0;
 
-    PhysicsStateDefault(GameObject self) {
+    public PhysicsStateDefault(GameObject self) {
         this.self = self;
     }
     /**

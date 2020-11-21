@@ -5,18 +5,34 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import oop.koyomia.boomberman.GDXLibExtend.OrthogonalTiledMapRendererExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
+import oop.koyomia.boomberman.InputComponent.InputManagement.PlayerInputManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class IngameScreen implements Screen, InputProcessor {
     GameScene game;
-
-    List<GameObject> world = new ArrayList<>();
-
+    PlayerInputManager playerInputManager;
+    private List<GameObject> world = new ArrayList<>();
+    private OrthographicCamera camera;
+    private TiledMap map;
+    private TiledMapRenderer renderer;
     public IngameScreen(GameScene game){
-            this.game = game;
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        this.game = game;
+        playerInputManager = PlayerInputManager.getInstance();
+        map = GameConfig.newGameInit(world, 0);
+        renderer = new OrthogonalTiledMapRendererExt(map, 3.375f);
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2,0);
+        camera.update();
     }
 
     @Override
@@ -28,10 +44,18 @@ public class IngameScreen implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        for (GameObject gameObject : world) {
+            gameObject.update(world, delta);
+        }
+        camera.update();
+        renderer.setView(camera);
+        renderer.render();
         game.batch.begin();
         // GameUtils.renderFrame(game.batch, world);
         //game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
         game.batch.end();
+        // clear input per frame
+        playerInputManager.clear();
     }
 
     @Override
@@ -66,6 +90,7 @@ public class IngameScreen implements Screen, InputProcessor {
      */
     @Override
     public boolean keyDown(int keycode) {
+        this.playerInputManager.getKeyDown().add(keycode);
         return false;
     }
 
@@ -77,6 +102,7 @@ public class IngameScreen implements Screen, InputProcessor {
      */
     @Override
     public boolean keyUp(int keycode) {
+        this.playerInputManager.getKeyUp().add(keycode);
         return false;
     }
 

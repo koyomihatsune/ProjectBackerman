@@ -6,15 +6,18 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 import java.util.HashMap;
 
 public class GraphicStateMoveable extends  GraphicStateDefault {
-    protected HashMap<String, TiledMapTile> graphicStates;
+    protected HashMap<String, TiledMapTile> tileStates;
     public GraphicStateMoveable(GameObject self) {
         super(self);
-        graphicStates = new HashMap<>();
+        tileStates = new HashMap<>();
     }
-    public HashMap<String, TiledMapTile> getGraphicStates() {
-        return this.graphicStates;
+
+    @Override
+    public HashMap<String, TiledMapTile> getTileStates() {
+        return this.tileStates;
     }
+
     public void putGraphicState(String key, TiledMapTile tile) {
-        this.graphicStates.put(key, tile);
+        this.tileStates.put(key, tile);
     }
 }

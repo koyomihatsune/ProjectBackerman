@@ -3,7 +3,7 @@ package oop.koyomia.boomberman.PhysicsComponent.State;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
 public class PhysicsStateMoveable extends PhysicsStateDefault{
-    PhysicsStateMoveable(GameObject self) {
+    public PhysicsStateMoveable(GameObject self) {
         super(self);
     }
 

@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Rectangle;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
+import java.util.HashMap;
+
 
 /**
  * The type Graphic state default.
@@ -37,6 +39,11 @@ public class GraphicStateDefault implements GraphicState {
                 self.getCell().getY(),
                 self.getCell().getTile().getTextureRegion().getRegionWidth(),
                 self.getCell().getTile().getTextureRegion().getRegionHeight());
+    }
+
+    @Override
+    public HashMap<String, TiledMapTile> getTileStates() {
+        throw new UnsupportedOperationException();
     }
 
 

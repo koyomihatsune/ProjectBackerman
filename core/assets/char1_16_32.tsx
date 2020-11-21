@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.2" name="char1_16_32" tilewidth="16" tileheight="32" tilecount="52" columns="4">
  <properties>
-  <property name="ấcc" type="int" value="0"/>
+  <property name="go_down" type="int" value="0"/>
+  <property name="go_left" type="int" value="12"/>
+  <property name="go_right" type="int" value="4"/>
+  <property name="go_up" type="int" value="8"/>
+  <property name="idle" type="int" value="24"/>
  </properties>
  <image source="char1.png" width="74" height="418"/>
  <tile id="0">
+  <properties>
+   <property name="type" value="Main"/>
+  </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" type="collision" x="-0.228457" y="23.3026" width="16.1443" height="5.2545"/>
   </objectgroup>

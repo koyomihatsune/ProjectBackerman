@@ -3,17 +3,23 @@ package oop.koyomia.boomberman.GDXLibExtend;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.*;
+import com.badlogic.gdx.math.Rectangle;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.*;
 
 public class OrthogonalTiledMapRendererExt extends OrthogonalTiledMapRenderer {
-
+    private boolean debugMode = true;
     public OrthogonalTiledMapRendererExt(TiledMap map) {
         super(map);
     }
@@ -61,28 +67,27 @@ public class OrthogonalTiledMapRendererExt extends OrthogonalTiledMapRenderer {
             float y = row2 * layerTileHeight + layerOffsetY;
             float xStart = col1 * layerTileWidth + layerOffsetX;
             final float[] vertices = this.vertices;
-            Collections.sort(layerExt.freeCells);
-            int freeCellRendered = 0;
-            for (int row = row2; row >= row1; row--) {
-                float x = xStart;
-                while (freeCellRendered < layerExt.freeCells.size() && layerExt.freeCells.get(freeCellRendered).getY() + layerOffsetY > y){
-                    final TiledMapTileLayerExt.FreeCell freeCell = layerExt.freeCells.get(freeCellRendered++);
-                    drawCell(freeCell, freeCell.getX() + layerOffsetX, freeCell.getY() + layerOffsetY, color);
-                }
-                for (int col = col1; col < col2; col++) {
-                    final TiledMapTileLayer.Cell cell = layer.getCell(col, row);
-                    if (cell == null) {
-                        x += layerTileWidth;
-                        continue;
-                    }
-                    drawCell(cell, x, y, color);
-                    x += layerTileWidth;
-                }
-                y -= layerTileHeight;
+//            List<TiledMapTileLayerExt.FreeCell> cellList = new ArrayList<>();
+//            int freeCellRendered = 0;
+//            for (int row = row2; row >= row1; row--) {
+//                float x = xStart;
+//                for (int col = col1; col < col2; col++) {
+//                    final TiledMapTileLayer.Cell cell = layer.getCell(col, row);
+//                    if (cell == null) {
+//                        x += layerTileWidth;
+//                        continue;
+//                    }
+//                    cellList.add(new TiledMapTileLayerExt.FreeCell(cell, x, y));
+//                    x += layerTileWidth;
+//                }
+//                y -= layerTileHeight;
+//            }
+            Collections.sort(((TiledMapTileLayerExt) layer).freeCells);
+            for (TiledMapTileLayerExt.FreeCell freeCell : ((TiledMapTileLayerExt) layer).freeCells) {
+                drawCell(freeCell, freeCell.getX() * unitScale + layerOffsetX, freeCell.getY() * unitScale + layerOffsetY, color);
             }
         } else
             super.renderTileLayer(layer);
-
     }
     private void drawCell(TiledMapTileLayer.Cell cell, float x, float y, float color) {
         final TiledMapTile tile = cell.getTile();
@@ -192,6 +197,7 @@ public class OrthogonalTiledMapRendererExt extends OrthogonalTiledMapRenderer {
                 }
             }
             batch.draw(region.getTexture(), vertices, 0, NUM_VERTICES);
+
         }
     }
 }

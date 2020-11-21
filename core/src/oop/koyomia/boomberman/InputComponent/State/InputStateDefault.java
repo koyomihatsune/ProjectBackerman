@@ -12,6 +12,7 @@ public class InputStateDefault implements InputState {
 
     public InputStateDefault(GameObject self) {
         this.self = self;
+        this.listCommand = new HashMap<>();
     }
     @Override
     public void addCommand(Integer key, Command command) {
