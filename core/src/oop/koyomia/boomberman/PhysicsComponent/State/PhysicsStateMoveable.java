@@ -21,14 +21,16 @@ public class PhysicsStateMoveable extends PhysicsStateDefault{
     @Override
     public void setXVel(float x_vel) {
         this.x_vel = x_vel;
-        this.y_vel = 0;
+        if (x_vel != 0)
+            this.y_vel = 0;
     }
 
     // Only support one direction moving
     @Override
     public void setYVel(float y_vel) {
         this.y_vel = y_vel;
-        this.x_vel = 0;
+        if (y_vel != 0)
+            this.x_vel = 0;
     }
 
 }

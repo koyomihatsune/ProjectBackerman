@@ -3,6 +3,7 @@ package oop.koyomia.boomberman.GDXLibExtend;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -20,6 +21,7 @@ import static com.badlogic.gdx.graphics.g2d.Batch.*;
 
 public class OrthogonalTiledMapRendererExt extends OrthogonalTiledMapRenderer {
     private boolean debugMode = true;
+    ShapeRenderer shapeRenderer = new ShapeRenderer();
     public OrthogonalTiledMapRendererExt(TiledMap map) {
         super(map);
     }
@@ -83,9 +85,17 @@ public class OrthogonalTiledMapRendererExt extends OrthogonalTiledMapRenderer {
 //                y -= layerTileHeight;
 //            }
             Collections.sort(((TiledMapTileLayerExt) layer).freeCells);
+            shapeRenderer.setAutoShapeType(true);
             for (TiledMapTileLayerExt.FreeCell freeCell : ((TiledMapTileLayerExt) layer).freeCells) {
                 drawCell(freeCell, freeCell.getX() * unitScale + layerOffsetX, freeCell.getY() * unitScale + layerOffsetY, color);
             }
+//            shapeRenderer.begin();
+//            for (TiledMapTileLayerExt.FreeCell freeCell : ((TiledMapTileLayerExt) layer).freeCells) {
+//                Rectangle tempRect = ((RectangleMapObject) freeCell.getTile().getObjects().get("collision")).getRectangle();
+//                if (tempRect.width != 0 && tempRect.getHeight() != 0)
+//                    shapeRenderer.rect((tempRect.x + freeCell.getX()) * unitScale + layerOffsetX, (tempRect.y + freeCell.getY()) * unitScale + layerOffsetY, tempRect.width * unitScale, tempRect.height * unitScale);
+//            }
+//            shapeRenderer.end();
         } else
             super.renderTileLayer(layer);
     }

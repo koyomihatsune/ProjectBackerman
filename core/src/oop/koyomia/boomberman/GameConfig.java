@@ -13,10 +13,10 @@ import java.util.List;
 
 public class GameConfig {
 
-    public static final float CHARACTER_VELOCITY = 2;
+    public static final float CHARACTER_VELOCITY = 2.0f;
 
     public static TiledMap newGameInit(List<GameObject> world, int level) {
-        TiledMap map = new TmxMapLoader().load("untitled.tmx");
+        TiledMap map = new TmxMapLoader().load("BackermanMap1.tmx");
 
         // replace all TiledMapTileLayer with our TiledMapTileLayerExt.
         MapLayer[] willBeDeleteLayer = new TiledMapTileLayer[map.getLayers().getCount()];

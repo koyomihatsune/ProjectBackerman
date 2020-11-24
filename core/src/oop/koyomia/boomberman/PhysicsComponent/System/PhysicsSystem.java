@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PhysicsSystem {
-    List<GameObject> overlapList(List<GameObject> world);
+//    List<GameObject> overlapList(List<GameObject> world);
     default List<GameObject> getOverlapList(Rectangle rec, List<GameObject> world, GameObject ignoreObj) {
         List<GameObject> overlapList = new ArrayList<>();
-        world.forEach((i) -> {if (rec.overlaps(i.getPhysicsState().getPhysicsBody())) overlapList.add(i);});
+        world.forEach((i) -> {if (rec.overlaps(i.getPhysicsState().getPhysicsBody()) && i.getPhysicsState().getPhysicsBody().getWidth() != 0 && i.getPhysicsState().getPhysicsBody().getHeight() != 0) overlapList.add(i);});
         if (ignoreObj != null) overlapList.remove(ignoreObj);
         return overlapList;
     }

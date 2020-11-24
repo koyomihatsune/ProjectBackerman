@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
-// Unmoveable State
+// Unmovable State
 public class PhysicsStateDefault implements PhysicsState {
     protected GameObject self;
     protected float x_vel = 0;
@@ -26,7 +26,7 @@ public class PhysicsStateDefault implements PhysicsState {
             Rectangle offsetRec = ((RectangleMapObject) self.getCell().getTile().getObjects().get("collision")).getRectangle();
             return new Rectangle(renderRec.x + offsetRec.x, renderRec.y + offsetRec.y, offsetRec.width, offsetRec.height);
         } catch (NullPointerException e) {
-            return new Rectangle(0, 0, 0, 0);
+            return new Rectangle(renderRec.x, renderRec.y, 0, 0);
         }
     }
 

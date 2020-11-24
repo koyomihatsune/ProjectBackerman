@@ -4,7 +4,7 @@
  <tile id="0" type="empty"/>
  <tile id="384">
   <objectgroup draworder="index" id="6">
-   <object id="6" x="0.0457582" y="0.0915164" width="15.8781" height="15.8323"/>
+   <object id="6" name="collision" x="0.0457582" y="0.0915164" width="15.8781" height="15.8323"/>
   </objectgroup>
  </tile>
 </tileset>

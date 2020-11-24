@@ -6,9 +6,12 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
 import oop.koyomia.boomberman.GDXLibExtend.OrthogonalTiledMapRendererExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.InputComponent.InputManagement.PlayerInputManager;
@@ -23,13 +26,15 @@ public class IngameScreen implements Screen, InputProcessor {
     private OrthographicCamera camera;
     private TiledMap map;
     private TiledMapRenderer renderer;
+    private ShapeRenderer shapeRenderer;
     public IngameScreen(GameScene game){
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
+        shapeRenderer = new ShapeRenderer();
         this.game = game;
         playerInputManager = PlayerInputManager.getInstance();
         map = GameConfig.newGameInit(world, 0);
-        renderer = new OrthogonalTiledMapRendererExt(map, 3.375f);
+        renderer = new OrthogonalTiledMapRendererExt(map, 3);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2,0);
         camera.update();
@@ -54,6 +59,16 @@ public class IngameScreen implements Screen, InputProcessor {
         // GameUtils.renderFrame(game.batch, world);
         //game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
         game.batch.end();
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+        for (GameObject gameObject : world) {
+            Rectangle physicsRect = gameObject.getPhysicsState().getPhysicsBody();
+            OrthogonalTiledMapRendererExt or = (OrthogonalTiledMapRendererExt)renderer;
+            float unitScale = or.getUnitScale();
+            shapeRenderer.rect(physicsRect.x * unitScale, physicsRect.y * unitScale, physicsRect.width * unitScale, physicsRect.height * unitScale);
+        }
+        shapeRenderer.end();
         // clear input per frame
         playerInputManager.clear();
     }

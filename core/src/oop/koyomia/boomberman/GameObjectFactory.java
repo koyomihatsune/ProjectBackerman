@@ -76,6 +76,7 @@ public class GameObjectFactory {
                 gameObject.setGraphicSystem(gsystemF.createInstance(gameObject));
                 gameObject.setPhysicsState(pstateF.createInstance(gameObject));
                 gameObject.setPhysicsSystem(psystemF.createInstance(gameObject));
+                gameObject.setType(type);
                 world.add(gameObject);
             }
         }

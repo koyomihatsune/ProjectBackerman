@@ -11,5 +11,6 @@ public class MoveLeft implements Command {
     @Override
     public void execute(List<GameObject> world, GameObject self) {
         self.getPhysicsState().setXVel(-CHARACTER_VELOCITY);
+        self.getPhysicsState().setYVel(0);
     }
 }

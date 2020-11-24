@@ -52,7 +52,7 @@ public class TiledMapTileLayerExt extends TiledMapTileLayer {
         this.setVisible(tiledMapTileLayer.isVisible());
     }
 
-    public static class FreeCell extends Cell implements Comparable<FreeCell>{
+    public static class FreeCell extends Cell implements Comparable<FreeCell> {
         private float x;
         private float y;
         private boolean isValidated = false;

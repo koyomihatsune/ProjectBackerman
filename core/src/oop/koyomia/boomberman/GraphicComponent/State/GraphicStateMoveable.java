@@ -1,8 +1,10 @@
 package oop.koyomia.boomberman.GraphicComponent.State;
 
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
+import java.awt.*;
 import java.util.HashMap;
 
 public class GraphicStateMoveable extends  GraphicStateDefault {
@@ -18,6 +20,11 @@ public class GraphicStateMoveable extends  GraphicStateDefault {
     }
 
     public void putGraphicState(String key, TiledMapTile tile) {
+        if (tile.getObjects().get("collision") == null) {
+            RectangleMapObject tempRec = new RectangleMapObject(0, 0, 0, 0);
+            tempRec.setName("collision");
+            tile.getObjects().add(tempRec);
+        }
         this.tileStates.put(key, tile);
     }
 }
