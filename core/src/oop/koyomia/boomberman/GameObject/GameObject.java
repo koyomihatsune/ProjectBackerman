@@ -1,29 +1,99 @@
 package oop.koyomia.boomberman.GameObject;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
+import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
+import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
+import oop.koyomia.boomberman.InputComponent.State.InputState;
+import oop.koyomia.boomberman.InputComponent.System.InputSystem;
+import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
+import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 
-import com.badlogic.gdx.graphics.Texture;
-import oop.koyomia.boomberman.GraphicComponent.GraphicComponent;
+import java.util.List;
 
-import java.util.Comparator;
+public class GameObject {
+    protected String type;
+    protected GraphicState graphicState;
+    protected PhysicsState physicsState;
+    protected InputState inputState;
+    protected GraphicSystem graphicSystem;
+    protected PhysicsSystem physicsSystem;
+    protected InputSystem inputSystem;
+     protected TiledMapTileLayerExt.FreeCell cell;
 
-public abstract class GameObject {
-    protected GraphicComponent graphicComponent;
-    // protected GameObject particles;
+    public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
+        if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
+        this.cell = cell;
 
-    protected int layerLevel;
-
-    public GameObject() {
-        this.graphicComponent = new GraphicComponent();
     }
 
-    public GraphicComponent getGraphicComponent() {
-        return graphicComponent;
+    public String getType() {
+        return type;
     }
 
-    public void setGraphicComponent(GraphicComponent graphicComponent) {
-        this.graphicComponent = graphicComponent;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public static Comparator<GameObject> sortByLayer() {
-        return (o1, o2) -> Integer.compare(o1.layerLevel, o2.layerLevel);
+    public GraphicState getGraphicState() {
+        return graphicState;
+    }
+
+    public void setGraphicState(GraphicState graphicState) {
+        this.graphicState = graphicState;
+    }
+
+    public PhysicsState getPhysicsState() {
+        return physicsState;
+    }
+
+    public void setPhysicsState(PhysicsState physicsState) {
+        this.physicsState = physicsState;
+    }
+
+    public InputState getInputState() {
+        return inputState;
+    }
+
+    public void setInputState(InputState inputState) {
+        this.inputState = inputState;
+    }
+
+    public PhysicsSystem getPhysicsSystem() {
+        return physicsSystem;
+    }
+
+    public void setPhysicsSystem(PhysicsSystem physicsSystem) {
+        this.physicsSystem = physicsSystem;
+    }
+
+    public InputSystem getInputSystem() {
+        return inputSystem;
+    }
+
+    public void setInputSystem(InputSystem inputSystem) {
+        this.inputSystem = inputSystem;
+    }
+
+    public void setCell(TiledMapTileLayerExt.FreeCell cell) {
+        this.cell = cell;
+    }
+
+    public GraphicSystem getGraphicSystem() {
+        return graphicSystem;
+    }
+
+    public void setGraphicSystem(GraphicSystem graphicSystem) {
+        this.graphicSystem = graphicSystem;
+    }
+
+
+
+    public TiledMapTileLayerExt.FreeCell getCell() {
+        return this.cell;
+    }
+
+    public void update(List<GameObject> world, float delta) {
+        this.inputSystem.update(world, delta);
+        this.physicsSystem.update(world, delta);
+        this.graphicSystem.update(world, delta);
     }
 }

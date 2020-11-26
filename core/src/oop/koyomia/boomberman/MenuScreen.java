@@ -106,6 +106,7 @@ public class MenuScreen implements Screen {
         this.game = game;
     }
 
+
     /**
      * return the appropriate x value to render text from center of the screen.
      * Requires input.
