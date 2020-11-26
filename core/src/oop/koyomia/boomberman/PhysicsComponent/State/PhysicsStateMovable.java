@@ -2,8 +2,8 @@ package oop.koyomia.boomberman.PhysicsComponent.State;
 
 import oop.koyomia.boomberman.GameObject.GameObject;
 
-public class PhysicsStateMoveable extends PhysicsStateDefault{
-    public PhysicsStateMoveable(GameObject self) {
+public class PhysicsStateMovable extends PhysicsStateDefault{
+    public PhysicsStateMovable(GameObject self) {
         super(self);
     }
 

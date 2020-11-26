@@ -26,5 +26,4 @@ public class InputSystemDefault implements InputSystem {
             if (excuteCommand != null) excuteCommand.execute(world, self);
         }
     }
-
 }

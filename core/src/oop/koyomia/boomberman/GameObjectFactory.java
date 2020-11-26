@@ -6,27 +6,22 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateFactory;
-import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMoveableFactory;
+import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
-import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMoveableFactory;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
+import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
-import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
 import oop.koyomia.boomberman.InputComponent.Factory.InputStateFactory;
-import oop.koyomia.boomberman.InputComponent.Factory.InputStateMoveableFactory;
+import oop.koyomia.boomberman.InputComponent.Factory.InputStateMovableFactory;
 import oop.koyomia.boomberman.InputComponent.Factory.InputSystemFactory;
-import oop.koyomia.boomberman.InputComponent.Factory.InputSystemMoveableFactory;
-import oop.koyomia.boomberman.InputComponent.State.InputState;
+import oop.koyomia.boomberman.InputComponent.Factory.InputSystemMovableFactory;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.InputSystemDefault;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMoveableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMoveableFactory;
-import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateDefault;
-import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 
 import java.util.ArrayList;
@@ -54,12 +49,12 @@ public class GameObjectFactory {
                 if (type == null) type = "";
                 switch (type) {
                     case "Main" :
-                        pstateF = new PhysicStatesMoveableFactory();
-                        psystemF = new PhysicsSystemMoveableFactory();
-                        gstateF = new GraphicStateMoveableFactory();
-                        gsystemF = new GraphicSystemMoveableFactory();
-                        istateF = new InputStateMoveableFactory();
-                        isystemF = new InputSystemMoveableFactory();
+                        pstateF = new PhysicStatesMovableFactory();
+                        psystemF = new PhysicsSystemMovableFactory();
+                        gstateF = new GraphicStateMovableFactory();
+                        gsystemF = new GraphicSystemMovableFactory();
+                        istateF = new InputStateMovableFactory();
+                        isystemF = new InputSystemMovableFactory();
                         break;
                     default:
                         //throw new IllegalStateException("Unexpected value: " + type);

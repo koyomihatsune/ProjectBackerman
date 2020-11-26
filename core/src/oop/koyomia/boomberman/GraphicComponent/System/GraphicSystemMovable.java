@@ -2,13 +2,12 @@ package oop.koyomia.boomberman.GraphicComponent.System;
 
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateMoveable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class GraphicSystemMoveable extends GraphicSystemDefault{
-    public GraphicSystemMoveable(@NotNull GameObject self) {
+public class GraphicSystemMovable extends GraphicSystemDefault{
+    public GraphicSystemMovable(@NotNull GameObject self) {
         super(self);
     }
 
