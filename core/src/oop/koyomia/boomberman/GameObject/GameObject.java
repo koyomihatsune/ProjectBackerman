@@ -1,4 +1,6 @@
 package oop.koyomia.boomberman.GameObject;
+import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentState;
+import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystem;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
@@ -17,6 +19,9 @@ public class GameObject {
     protected GraphicSystem graphicSystem;
     protected PhysicsSystem physicsSystem;
     protected InputSystem inputSystem;
+    protected EquipmentSystem equipmentSystem;
+    protected EquipmentState equipmentState;
+
      protected TiledMapTileLayerExt.FreeCell cell;
 
     public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
@@ -31,6 +36,20 @@ public class GameObject {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public EquipmentState getEquipmentState() { return equipmentState; }
+
+    public void setEquipmentSystem(EquipmentSystem equipmentSystem) {
+        this.equipmentSystem = equipmentSystem;
+    }
+
+    public void setEquipmentState(EquipmentState equipmentState) {
+        this.equipmentState = equipmentState;
+    }
+
+    public EquipmentSystem getEquipmentSystem() {
+        return equipmentSystem;
     }
 
     public GraphicState getGraphicState() {
@@ -96,4 +115,6 @@ public class GameObject {
         this.physicsSystem.update(world, delta);
         this.graphicSystem.update(world, delta);
     }
+
+
 }

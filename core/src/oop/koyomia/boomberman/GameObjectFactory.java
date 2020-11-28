@@ -17,16 +17,13 @@ import oop.koyomia.boomberman.InputComponent.Factory.InputStateFactory;
 import oop.koyomia.boomberman.InputComponent.Factory.InputStateMoveableFactory;
 import oop.koyomia.boomberman.InputComponent.Factory.InputSystemFactory;
 import oop.koyomia.boomberman.InputComponent.Factory.InputSystemMoveableFactory;
-import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.InputSystemDefault;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMoveableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMoveableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMoveableFactory;
-import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateDefault;
-import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 
 import java.util.ArrayList;
@@ -54,12 +51,13 @@ public class GameObjectFactory {
                 if (type == null) type = "";
                 switch (type) {
                     case "Main" :
-                        pstateF = new PhysicStatesMoveableFactory();
+                        pstateF = new PhysicsStateMoveableFactory();
                         psystemF = new PhysicsSystemMoveableFactory();
                         gstateF = new GraphicStateMoveableFactory();
                         gsystemF = new GraphicSystemMoveableFactory();
                         istateF = new InputStateMoveableFactory();
                         isystemF = new InputSystemMoveableFactory();
+
                         break;
                     default:
                         //throw new IllegalStateException("Unexpected value: " + type);
