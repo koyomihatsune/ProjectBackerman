@@ -43,7 +43,7 @@ public class MenuScreen implements Screen {
     int bgx1;
     int bgy = -580;
     int ticks = 0;
-    boolean welcomeScreenFinished;
+    boolean welcomeScreenFinished = true;
 
     private class MenuButton {
         private String label;
@@ -370,9 +370,17 @@ public class MenuScreen implements Screen {
 
                         //NEW GAME LEVEL
                         else if (certainMainMenuSelection == 0){
-
-                            game.setScreen(new IngameScreen(game));
+                            IngameScreen ingameScreen = new IngameScreen(game);
+                            game.setScreen(ingameScreen);
+                            Gdx.input.setInputProcessor(ingameScreen);
                         }
+                    }
+                }
+                if (keyCode == Input.Keys.ESCAPE) {
+                    if (inMainMenu == false) {
+                        MENU_TITLE = "Project Backerman";
+                        constructCurrentList(MenuButtonList);
+                        inMainMenu = true;
                     }
                 }
                 return true;

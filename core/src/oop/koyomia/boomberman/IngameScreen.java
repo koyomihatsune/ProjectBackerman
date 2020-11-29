@@ -18,6 +18,7 @@ import oop.koyomia.boomberman.InputComponent.InputManagement.PlayerInputManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class IngameScreen implements Screen, InputProcessor {
     GameScene game;
@@ -106,6 +107,8 @@ public class IngameScreen implements Screen, InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         this.playerInputManager.getKeyDown().add(keycode);
+        this.playerInputManager.getKeyPress().add(keycode);
+        //System.out.println(keycode + " dang duoc bam");
         return false;
     }
 
@@ -118,6 +121,7 @@ public class IngameScreen implements Screen, InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         this.playerInputManager.getKeyUp().add(keycode);
+        this.playerInputManager.getKeyPress().remove(new Integer(keycode));
         return false;
     }
 
