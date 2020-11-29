@@ -3,15 +3,19 @@ package oop.koyomia.boomberman;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateMovableFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemMovableFactory;
+import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentStateDefault;
+import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystemDefault;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMoveableFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMoveableFactory;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
-import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
 import oop.koyomia.boomberman.InputComponent.Factory.InputStateFactory;
 import oop.koyomia.boomberman.InputComponent.Factory.InputStateMoveableFactory;
@@ -38,6 +42,9 @@ public class GameObjectFactory {
         GraphicSystemFactory gsystemF;
         InputStateFactory istateF;
         InputSystemFactory isystemF;
+        EquipmentStateFactory estateF;
+        EquipmentSystemFactory esystemF;
+
         for (MapLayer layer : map.getLayers()) {
             TiledMapTileLayerExt layerExt = (TiledMapTileLayerExt) layer;
             for (TiledMapTileLayerExt.FreeCell cell : layerExt.freeCells) {
@@ -57,7 +64,8 @@ public class GameObjectFactory {
                         gsystemF = new GraphicSystemMoveableFactory();
                         istateF = new InputStateMoveableFactory();
                         isystemF = new InputSystemMoveableFactory();
-
+                        estateF = new EquipmentStateMovableFactory();
+                        esystemF = new EquipmentSystemMovableFactory();
                         break;
                     default:
                         //throw new IllegalStateException("Unexpected value: " + type);
@@ -67,6 +75,9 @@ public class GameObjectFactory {
                         gsystemF = self -> new GraphicSystemDefault(self);
                         istateF = self -> new InputStateDefault(self);
                         isystemF = self -> new InputSystemDefault(self);
+                        estateF = self -> new EquipmentStateDefault(self);
+                        esystemF = self -> new EquipmentSystemDefault(self);
+
                 }
                 gameObject.setInputState(istateF.createInstance(gameObject));
                 gameObject.setInputSystem(isystemF.createInstance(gameObject));
@@ -74,6 +85,8 @@ public class GameObjectFactory {
                 gameObject.setGraphicSystem(gsystemF.createInstance(gameObject));
                 gameObject.setPhysicsState(pstateF.createInstance(gameObject));
                 gameObject.setPhysicsSystem(psystemF.createInstance(gameObject));
+                gameObject.setEquipmentState(estateF.createInstance(gameObject));
+                gameObject.setEquipmentSystem(esystemF.createInstance(gameObject));
                 gameObject.setType(type);
                 world.add(gameObject);
             }

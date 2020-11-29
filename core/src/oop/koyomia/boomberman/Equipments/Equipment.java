@@ -7,4 +7,7 @@ public class Equipment {
     public Equipment(Command c){
         this.command = c;
     }
+    public Command getCommand(){
+        return this.command;
+    }
 }

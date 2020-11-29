@@ -17,11 +17,6 @@ public class EquipmentSystemDefault implements EquipmentSystem {
         this.self = self;
     }
 
-//    public Command certainEquipmentFire(){
-//        EquipmentState equipmentState = this.self.getEquipmentState();
-//        //EquipmentType certainEquipmentType = equipmentState.
-//    }
-
     public void update(@NotNull List<GameObject> world, float delta) {
 
     }

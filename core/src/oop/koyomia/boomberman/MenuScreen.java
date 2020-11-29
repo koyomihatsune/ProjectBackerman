@@ -43,7 +43,7 @@ public class MenuScreen implements Screen {
     int bgx1;
     int bgy = -580;
     int ticks = 0;
-    boolean welcomeScreenFinished;
+    boolean welcomeScreenFinished = true;
 
     private class MenuButton {
         private String label;

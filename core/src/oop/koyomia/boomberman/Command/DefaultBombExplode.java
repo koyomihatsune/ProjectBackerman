@@ -7,6 +7,7 @@ import java.util.List;
 public class DefaultBombExplode implements Command {
     @Override
     public void execute(List<GameObject> world, GameObject self) {
-
+        self.getEquipmentState().restoreDefaultBomb();
+        System.out.println("Bomb explode!");
     }
 }

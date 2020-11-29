@@ -38,14 +38,14 @@ public class GameObject {
         this.type = type;
     }
 
+    public void setEquipmentState(EquipmentState equipmentState) {
+        this.equipmentState = equipmentState;
+    }
+
     public EquipmentState getEquipmentState() { return equipmentState; }
 
     public void setEquipmentSystem(EquipmentSystem equipmentSystem) {
         this.equipmentSystem = equipmentSystem;
-    }
-
-    public void setEquipmentState(EquipmentState equipmentState) {
-        this.equipmentState = equipmentState;
     }
 
     public EquipmentSystem getEquipmentSystem() {
