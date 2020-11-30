@@ -43,7 +43,7 @@ public class MenuScreen implements Screen {
     int bgx1;
     int bgy = -580;
     int ticks = 0;
-    boolean welcomeScreenFinished;
+    boolean welcomeScreenFinished = true;
 
     private class MenuButton {
         private String label;
@@ -370,8 +370,9 @@ public class MenuScreen implements Screen {
 
                         //NEW GAME LEVEL
                         else if (certainMainMenuSelection == 0){
-
+                            IngameScreen ingameScreen = new IngameScreen(game);
                             game.setScreen(new IngameScreen(game));
+                            Gdx.input.setInputProcessor(ingameScreen);
                         }
                     }
                 }
