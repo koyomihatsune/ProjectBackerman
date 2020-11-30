@@ -6,7 +6,7 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 
-public class InputStateMoveableFactory implements InputStateFactory {
+public class InputStateMovableFactory implements InputStateFactory {
     @Override
     public InputState createInstance(GameObject self) {
         InputState ipS = new InputStateDefault(self);

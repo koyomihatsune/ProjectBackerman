@@ -192,7 +192,7 @@ public class MenuScreen implements Screen {
         game.batch.draw(background,bgx1+Gdx.graphics.getWidth(),bgy);
         game.batch.draw(background,bgx1,bgy);
         bgx1--;
-        if (bgx1 <= 0-Gdx.graphics.getWidth()) {
+        if (bgx1 <= -Gdx.graphics.getWidth()) {
             bgx1 = 0;
         }
     }
@@ -225,8 +225,8 @@ public class MenuScreen implements Screen {
 
 
     public void drawMenuButtonFill(List<MenuButton> list){
-        if (isAnimationRan == false) {
-                if (isUpAnimation == false) {
+        if (!isAnimationRan) {
+                if (!isUpAnimation) {
                     drawy-=3;
                     if (drawy <= list.get(certainButtonHover).getY()-list.get(certainButtonHover).getHeight()-8)
                         isAnimationRan = true;
@@ -251,13 +251,12 @@ public class MenuScreen implements Screen {
     }
 
     public void drawMenuButton(){
-            drawMenuButtonFill(currentList);
-            for (int i = 0; i<currentList.size(); i++){
-                MenuButton certainButton = currentList.get(i);
-                if (currentList.get(i).isDisabled == true) menutext.setColor(Color.GRAY);
-                else menutext.setColor(Color.WHITE);
-                menutext.draw(game.batch, certainButton.getLabel(), certainButton.getX(), certainButton.getY());
-            }
+        drawMenuButtonFill(currentList);
+        for (MenuButton certainButton : currentList) {
+            if (certainButton.isDisabled) menutext.setColor(Color.GRAY);
+            else menutext.setColor(Color.WHITE);
+            menutext.draw(game.batch, certainButton.getLabel(), certainButton.getX(), certainButton.getY());
+        }
     }
 
     @Override
@@ -284,7 +283,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         drawBackground();
-        if (welcomeScreenFinished == false)
+        if (!welcomeScreenFinished)
             welcomeScreenRender();
         else {
             title.draw(game.batch, MENU_TITLE, getWidthOffset(title, MENU_TITLE), Gdx.graphics.getHeight() * .75f);
@@ -345,13 +344,13 @@ public class MenuScreen implements Screen {
                     }
                 }
                 if (keyCode == Input.Keys.ENTER) {
-                    if (inMainMenu == true){
+                    if (inMainMenu){
 
                         //EXIT BUTTON
                         if (certainButtonHover == currentList.size()-1){
                             System.exit(0);
                         }
-                        else if (currentList.get(certainButtonHover).isDisabled == false) {
+                        else if (!currentList.get(certainButtonHover).isDisabled) {
                             certainMainMenuSelection = certainButtonHover;
                             System.out.println(certainMainMenuSelection + " selected");
                             MENU_TITLE = MenuButtonList.get(certainButtonHover).getLabel();
@@ -371,9 +370,16 @@ public class MenuScreen implements Screen {
                         //NEW GAME LEVEL
                         else if (certainMainMenuSelection == 0){
                             IngameScreen ingameScreen = new IngameScreen(game);
-                            game.setScreen(new IngameScreen(game));
+                            game.setScreen(ingameScreen);
                             Gdx.input.setInputProcessor(ingameScreen);
                         }
+                    }
+                }
+                if (keyCode == Input.Keys.ESCAPE) {
+                    if (!inMainMenu) {
+                        MENU_TITLE = "Project Backerman";
+                        constructCurrentList(MenuButtonList);
+                        inMainMenu = true;
                     }
                 }
                 return true;
@@ -403,7 +409,7 @@ public class MenuScreen implements Screen {
         MenuButtonList.add(new MenuButton("Exit"));
 
         ActivationList = new ArrayList<>() ;
-        ActivationList.add(new ArrayList<MenuButton>());
+        ActivationList.add(new ArrayList<>());
         ActivationList.get(0).add(new MenuButton("Level 1"));
         ActivationList.get(0).add(new MenuButton("Level 2"));
         ActivationList.get(0).add(new MenuButton("Level 3"));
@@ -419,14 +425,14 @@ public class MenuScreen implements Screen {
         ActivationList.get(1).add(new MenuButton("<- Back"));
 
 
-        ActivationList.add(new ArrayList<MenuButton>());
+        ActivationList.add(new ArrayList<>());
         ActivationList.get(2).add(new MenuButton("Sound: ON"));
         ActivationList.get(2).add(new MenuButton("Volume: 100%"));
         ActivationList.get(2).add(new MenuButton("Bach's GF: null"));
         ActivationList.get(2).add(new MenuButton("<- Back"));
         ActivationList.get(2).get(2).setDisabled(true);
 
-        ActivationList.add(new ArrayList<MenuButton>());
+        ActivationList.add(new ArrayList<>());
         ActivationList.get(3).add(new MenuButton("Project Backerman Prototype"));
         ActivationList.get(3).add(new MenuButton("Made by Koyomia100"));
         ActivationList.get(3).add(new MenuButton(" - "));

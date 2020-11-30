@@ -7,9 +7,9 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 import java.awt.*;
 import java.util.HashMap;
 
-public class GraphicStateMoveable extends  GraphicStateDefault {
+public class GraphicStateMovable extends  GraphicStateDefault {
     protected HashMap<String, TiledMapTile> tileStates;
-    public GraphicStateMoveable(GameObject self) {
+    public GraphicStateMovable(GameObject self) {
         super(self);
         tileStates = new HashMap<>();
     }

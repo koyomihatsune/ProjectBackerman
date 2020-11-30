@@ -3,6 +3,7 @@ package oop.koyomia.boomberman;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import oop.koyomia.boomberman.ActiveEffectComponent.Factory.*;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateFactory;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateMovableFactory;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemFactory;
@@ -12,15 +13,13 @@ import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystemDefault;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateFactory;
-import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMoveableFactory;
+import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMoveableFactory;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
-import oop.koyomia.boomberman.InputComponent.Factory.InputStateFactory;
-import oop.koyomia.boomberman.InputComponent.Factory.InputStateMoveableFactory;
-import oop.koyomia.boomberman.InputComponent.Factory.InputSystemFactory;
-import oop.koyomia.boomberman.InputComponent.Factory.InputSystemMoveableFactory;
+import oop.koyomia.boomberman.InputComponent.Factory.*;
+import oop.koyomia.boomberman.PassiveEffectComponent.Factory.*;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.InputSystemDefault;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMoveableFactory;
@@ -42,6 +41,10 @@ public class GameObjectFactory {
         GraphicSystemFactory gsystemF;
         InputStateFactory istateF;
         InputSystemFactory isystemF;
+        ActiveEffectStateFactory aestateF;
+        ActiveEffectSystemFactory aesystemF;
+        PassiveEffectSystemFactory pesystemF;
+        PassiveEffectStateFactory pestateF;
         EquipmentStateFactory estateF;
         EquipmentSystemFactory esystemF;
 
@@ -58,26 +61,50 @@ public class GameObjectFactory {
                 if (type == null) type = "";
                 switch (type) {
                     case "Main" :
-                        pstateF = new PhysicsStateMoveableFactory();
-                        psystemF = new PhysicsSystemMoveableFactory();
-                        gstateF = new GraphicStateMoveableFactory();
-                        gsystemF = new GraphicSystemMoveableFactory();
-                        istateF = new InputStateMoveableFactory();
-                        isystemF = new InputSystemMoveableFactory();
+                        pstateF = new PhysicStatesMovableFactory();
+                        psystemF = new PhysicsSystemMovableFactory();
+                        gstateF = new GraphicStateMovableFactory();
+                        gsystemF = new GraphicSystemMovableFactory();
+                        istateF = new MainCharInputStateFactory();
+                        isystemF = new InputSystemMovableFactory();
+                        aestateF = new NonActiveEffectStateFactory();
+                        aesystemF = new NonActiveEffectSystemFactory();
+                        pestateF = new DefaultPassiveEffectStateFactory();
+                        pesystemF = new DefaultPassiveEffectSystemFactory();
                         estateF = new EquipmentStateMovableFactory();
                         esystemF = new EquipmentSystemMovableFactory();
                         break;
+//                    case "Bomb" :
+                    case "Ice" :
+                        pstateF = PhysicsStateDefault::new;
+                        psystemF = PhysicsSystemDefault::new;
+                        gstateF = (self, tileSet) -> new GraphicStateDefault(self);
+                        gsystemF = GraphicSystemDefault::new;
+                        istateF = InputStateDefault::new;
+                        isystemF = InputSystemDefault::new;
+                        aestateF = new DefaultActiveEffectStateFactory();
+                        aesystemF = new DefaultActiveEffectSystemFactory();
+                        pestateF = new NonPassiveEffectStateFactory();
+                        pesystemF = new NonPassiveEffectSystemFactory();
+                        estateF = new EquipmentStateMovableFactory();
+                        esystemF = new EquipmentSystemMovableFactory();
+                        //give attention
+                        break;
                     default:
                         //throw new IllegalStateException("Unexpected value: " + type);
-                        pstateF = self -> new PhysicsStateDefault(self);
-                        psystemF = self -> new PhysicsSystemDefault(self);
+                        pstateF = PhysicsStateDefault::new;
+                        psystemF = PhysicsSystemDefault::new;
                         gstateF = (self, tileSet) -> new GraphicStateDefault(self);
-                        gsystemF = self -> new GraphicSystemDefault(self);
-                        istateF = self -> new InputStateDefault(self);
-                        isystemF = self -> new InputSystemDefault(self);
+                        gsystemF = GraphicSystemDefault::new;
+                        istateF = InputStateDefault::new;
+                        isystemF = InputSystemDefault::new;
+                        aestateF = new NonActiveEffectStateFactory();
+                        aesystemF = new NonActiveEffectSystemFactory();
+                        pestateF = new NonPassiveEffectStateFactory();
+                        pesystemF = new NonPassiveEffectSystemFactory();
                         estateF = self -> new EquipmentStateDefault(self);
                         esystemF = self -> new EquipmentSystemDefault(self);
-
+                        break;
                 }
                 gameObject.setInputState(istateF.createInstance(gameObject));
                 gameObject.setInputSystem(isystemF.createInstance(gameObject));
@@ -85,6 +112,11 @@ public class GameObjectFactory {
                 gameObject.setGraphicSystem(gsystemF.createInstance(gameObject));
                 gameObject.setPhysicsState(pstateF.createInstance(gameObject));
                 gameObject.setPhysicsSystem(psystemF.createInstance(gameObject));
+
+                gameObject.setActiveEffectState(aestateF.createInstance(gameObject));
+                gameObject.setActiveEffectSystem(aesystemF.createInstance(gameObject));
+                gameObject.setPassiveEffectState(pestateF.createInstance(gameObject));
+                gameObject.setPassiveEffectSystem(pesystemF.createInstance(gameObject));
                 gameObject.setEquipmentState(estateF.createInstance(gameObject));
                 gameObject.setEquipmentSystem(esystemF.createInstance(gameObject));
                 gameObject.setType(type);

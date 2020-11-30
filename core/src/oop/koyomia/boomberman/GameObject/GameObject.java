@@ -6,7 +6,11 @@ import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
 import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.System.InputSystem;
+import oop.koyomia.boomberman.PassiveEffectComponent.State.PassiveEffectState;
+import oop.koyomia.boomberman.PassiveEffectComponent.System.PassiveEffectSystem;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
+import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateMovable;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 
 import java.util.List;
@@ -19,6 +23,11 @@ public class GameObject {
     protected GraphicSystem graphicSystem;
     protected PhysicsSystem physicsSystem;
     protected InputSystem inputSystem;
+    protected ActiveEffectState activeEffectState;
+    protected ActiveEffectSystem activeEffectSystem;
+    protected PassiveEffectState passiveEffectState;
+    protected PassiveEffectSystem passiveEffectSystem;
+    protected TiledMapTileLayerExt.FreeCell cell;
     protected EquipmentSystem equipmentSystem;
     protected EquipmentState equipmentState;
 
@@ -38,6 +47,36 @@ public class GameObject {
         this.type = type;
     }
 
+    public ActiveEffectState getActiveEffectState() {
+        return activeEffectState;
+    }
+
+    public void setActiveEffectState(ActiveEffectState activeEffectState) {
+        this.activeEffectState = activeEffectState;
+    }
+
+    public ActiveEffectSystem getActiveEffectSystem() {
+        return activeEffectSystem;
+    }
+
+    public void setActiveEffectSystem(ActiveEffectSystem activeEffectSystem) {
+        this.activeEffectSystem = activeEffectSystem;
+    }
+
+    public PassiveEffectState getPassiveEffectState() {
+        return passiveEffectState;
+    }
+
+    public void setPassiveEffectState(PassiveEffectState passiveEffectState) {
+        this.passiveEffectState = passiveEffectState;
+    }
+
+    public PassiveEffectSystem getPassiveEffectSystem() {
+        return passiveEffectSystem;
+    }
+
+    public void setPassiveEffectSystem(PassiveEffectSystem passiveEffectSystem) {
+        this.passiveEffectSystem = passiveEffectSystem;
     public void setEquipmentState(EquipmentState equipmentState) {
         this.equipmentState = equipmentState;
     }
@@ -113,7 +152,17 @@ public class GameObject {
     public void update(List<GameObject> world, float delta) {
         this.inputSystem.update(world, delta);
         this.physicsSystem.update(world, delta);
+        this.activeEffectSystem.update(world, delta);
+        this.passiveEffectSystem.update(world, delta);
         this.graphicSystem.update(world, delta);
+        this.afterUpdate();
+    }
+
+    public void afterUpdate() {
+        if (this.getPhysicsState() instanceof PhysicsStateMovable) {
+            this.getPhysicsState().setXVel(0);
+            this.getPhysicsState().setYVel(0);
+        }
     }
 
 

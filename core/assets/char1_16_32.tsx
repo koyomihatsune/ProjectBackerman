@@ -13,7 +13,7 @@
    <property name="type" value="Main"/>
   </properties>
   <objectgroup draworder="index" id="3">
-   <object id="2" name="collision" x="0" y="23" width="16" height="5"/>
+   <object id="2" name="collision" x="2" y="23" width="12" height="5"/>
   </objectgroup>
   <animation>
    <frame tileid="0" duration="180"/>
@@ -24,7 +24,7 @@
  </tile>
  <tile id="4">
   <objectgroup draworder="index" id="2">
-   <object id="2" name="collision" x="0" y="23" width="16" height="5"/>
+   <object id="3" name="collision" x="2" y="23" width="12" height="5"/>
   </objectgroup>
   <animation>
    <frame tileid="4" duration="180"/>
@@ -50,7 +50,7 @@
  </tile>
  <tile id="8">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="collision" x="0" y="23" width="16" height="5"/>
+   <object id="2" name="collision" x="2" y="23" width="12" height="5"/>
   </objectgroup>
   <animation>
    <frame tileid="8" duration="180"/>
@@ -76,7 +76,7 @@
  </tile>
  <tile id="12">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="collision" x="0" y="23" width="16" height="5"/>
+   <object id="2" name="collision" x="2" y="23" width="12" height="5"/>
   </objectgroup>
   <animation>
    <frame tileid="12" duration="180"/>
@@ -102,7 +102,7 @@
  </tile>
  <tile id="24">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="collision" x="0" y="23" width="16" height="5"/>
+   <object id="2" name="collision" x="2" y="23" width="12" height="5"/>
   </objectgroup>
   <animation>
    <frame tileid="24" duration="410"/>

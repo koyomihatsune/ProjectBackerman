@@ -5,7 +5,7 @@ import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemMovable;
 
-public class PhysicsSystemMoveableFactory implements PhysicsSystemFactory {
+public class PhysicsSystemMovableFactory implements PhysicsSystemFactory {
     @Override
     public PhysicsSystem createInstance(GameObject self) {
         return new PhysicsSystemMovable(self);
