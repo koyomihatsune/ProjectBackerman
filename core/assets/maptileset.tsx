@@ -14,7 +14,7 @@
   <objectgroup draworder="index" id="2">
    <object id="1" name="effect_range" x="0" y="0" width="16" height="16">
     <properties>
-     <property name="effect_type" value="SLOW_DOWN"/>
+     <property name="effect_type" value="SLOW_DOWN_NON_DUP"/>
     </properties>
    </object>
   </objectgroup>
