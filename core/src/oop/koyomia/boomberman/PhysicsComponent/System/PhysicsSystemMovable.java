@@ -21,5 +21,6 @@ public class PhysicsSystemMovable extends PhysicsSystemDefault {
             this.self.getPhysicsState().setXVel(0f);
             this.self.getPhysicsState().setYVel(0f);
         }
+//       else System.out.println(futureRec);
     }
 }

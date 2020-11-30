@@ -14,7 +14,7 @@ public class InputStateMovableFactory implements InputStateFactory {
         ipS.addCommand(Input.Keys.S, new MoveDown());
         ipS.addCommand(Input.Keys.A, new MoveLeft());
         ipS.addCommand(Input.Keys.D, new MoveRight());
-        ipS.addCommand(Input.Keys.SPACE, new PutBomb());
+        ipS.addCommand(Input.Keys.SPACE, new Fire());
         return ipS;
     }
 }

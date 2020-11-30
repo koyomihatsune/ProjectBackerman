@@ -4,22 +4,28 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import oop.koyomia.boomberman.ActiveEffectComponent.Factory.*;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateMovableFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemFactory;
+import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemMovableFactory;
+import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentStateDefault;
+import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystemDefault;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
-import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMovableFactory;
+import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMoveableFactory;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
 import oop.koyomia.boomberman.InputComponent.Factory.*;
+import oop.koyomia.boomberman.PassiveEffectComponent.Factory.*;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.InputSystemDefault;
-import oop.koyomia.boomberman.PassiveEffectComponent.Factory.*;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMovableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMoveableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMovableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMoveableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateDefault;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 
@@ -39,6 +45,9 @@ public class GameObjectFactory {
         ActiveEffectSystemFactory aesystemF;
         PassiveEffectSystemFactory pesystemF;
         PassiveEffectStateFactory pestateF;
+        EquipmentStateFactory estateF;
+        EquipmentSystemFactory esystemF;
+
         for (MapLayer layer : map.getLayers()) {
             TiledMapTileLayerExt layerExt = (TiledMapTileLayerExt) layer;
             for (TiledMapTileLayerExt.FreeCell cell : layerExt.freeCells) {
@@ -62,6 +71,8 @@ public class GameObjectFactory {
                         aesystemF = new NonActiveEffectSystemFactory();
                         pestateF = new DefaultPassiveEffectStateFactory();
                         pesystemF = new DefaultPassiveEffectSystemFactory();
+                        estateF = new EquipmentStateMovableFactory();
+                        esystemF = new EquipmentSystemMovableFactory();
                         break;
 //                    case "Bomb" :
                     case "Ice" :
@@ -75,6 +86,9 @@ public class GameObjectFactory {
                         aesystemF = new DefaultActiveEffectSystemFactory();
                         pestateF = new NonPassiveEffectStateFactory();
                         pesystemF = new NonPassiveEffectSystemFactory();
+                        estateF = new EquipmentStateMovableFactory();
+                        esystemF = new EquipmentSystemMovableFactory();
+                        //give attention
                         break;
                     default:
                         //throw new IllegalStateException("Unexpected value: " + type);
@@ -88,6 +102,8 @@ public class GameObjectFactory {
                         aesystemF = new NonActiveEffectSystemFactory();
                         pestateF = new NonPassiveEffectStateFactory();
                         pesystemF = new NonPassiveEffectSystemFactory();
+                        estateF = self -> new EquipmentStateDefault(self);
+                        esystemF = self -> new EquipmentSystemDefault(self);
                         break;
                 }
                 gameObject.setInputState(istateF.createInstance(gameObject));
@@ -96,10 +112,13 @@ public class GameObjectFactory {
                 gameObject.setGraphicSystem(gsystemF.createInstance(gameObject));
                 gameObject.setPhysicsState(pstateF.createInstance(gameObject));
                 gameObject.setPhysicsSystem(psystemF.createInstance(gameObject));
+
                 gameObject.setActiveEffectState(aestateF.createInstance(gameObject));
                 gameObject.setActiveEffectSystem(aesystemF.createInstance(gameObject));
                 gameObject.setPassiveEffectState(pestateF.createInstance(gameObject));
                 gameObject.setPassiveEffectSystem(pesystemF.createInstance(gameObject));
+                gameObject.setEquipmentState(estateF.createInstance(gameObject));
+                gameObject.setEquipmentSystem(esystemF.createInstance(gameObject));
                 gameObject.setType(type);
                 world.add(gameObject);
             }
