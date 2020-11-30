@@ -370,8 +370,9 @@ public class MenuScreen implements Screen {
 
                         //NEW GAME LEVEL
                         else if (certainMainMenuSelection == 0){
-
+                            IngameScreen ingameScreen = new IngameScreen(game);
                             game.setScreen(new IngameScreen(game));
+                            Gdx.input.setInputProcessor(ingameScreen);
                         }
                     }
                 }
