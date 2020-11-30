@@ -20,6 +20,7 @@ public class PhysicsSystemMovable extends PhysicsSystemDefault {
         if (futureCollide.size() != 0) {
             this.self.getPhysicsState().setXVel(0f);
             this.self.getPhysicsState().setYVel(0f);
-        } else System.out.println(futureRec);
+        }
+//       else System.out.println(futureRec);
     }
 }

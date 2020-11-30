@@ -1,6 +1,7 @@
 package oop.koyomia.boomberman.EquipmentComponent.State;
 
 import oop.koyomia.boomberman.Equipments.DefaultBombPutEquipment;
+import oop.koyomia.boomberman.Equipments.EmptyEquipment;
 import oop.koyomia.boomberman.Equipments.Equipment;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
@@ -25,7 +26,9 @@ public class EquipmentStateDefault implements EquipmentState {
     }
 
     public Equipment useEquippedEquipment(){
-        return equipmentStack.pop();
+        if (equipmentStack.size()!=0)
+            return equipmentStack.pop();
+        return new EmptyEquipment();
     }
 
     //whenever default bomb explode, put back to the first of stack
