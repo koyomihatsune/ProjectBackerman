@@ -15,17 +15,17 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
-import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMoveableFactory;
+import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
 import oop.koyomia.boomberman.InputComponent.Factory.*;
 import oop.koyomia.boomberman.PassiveEffectComponent.Factory.*;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.InputSystemDefault;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMoveableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMoveableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateDefault;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 
@@ -61,7 +61,7 @@ public class GameObjectFactory {
                 if (type == null) type = "";
                 switch (type) {
                     case "Main" :
-                        pstateF = new PhysicStatesMovableFactory();
+                        pstateF = new PhysicsStateMovableFactory();
                         psystemF = new PhysicsSystemMovableFactory();
                         gstateF = new GraphicStateMovableFactory();
                         gsystemF = new GraphicSystemMovableFactory();

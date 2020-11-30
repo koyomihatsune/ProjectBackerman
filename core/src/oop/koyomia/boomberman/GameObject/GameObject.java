@@ -1,4 +1,6 @@
 package oop.koyomia.boomberman.GameObject;
+import oop.koyomia.boomberman.ActiveEffectComponent.State.ActiveEffectState;
+import oop.koyomia.boomberman.ActiveEffectComponent.System.ActiveEffectSystem;
 import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentState;
 import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystem;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
@@ -8,7 +10,6 @@ import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.System.InputSystem;
 import oop.koyomia.boomberman.PassiveEffectComponent.State.PassiveEffectState;
 import oop.koyomia.boomberman.PassiveEffectComponent.System.PassiveEffectSystem;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateMovable;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
@@ -31,7 +32,6 @@ public class GameObject {
     protected EquipmentSystem equipmentSystem;
     protected EquipmentState equipmentState;
 
-     protected TiledMapTileLayerExt.FreeCell cell;
 
     public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
         if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
@@ -77,7 +77,9 @@ public class GameObject {
 
     public void setPassiveEffectSystem(PassiveEffectSystem passiveEffectSystem) {
         this.passiveEffectSystem = passiveEffectSystem;
-    public void setEquipmentState(EquipmentState equipmentState) {
+    }
+
+    public void setEquipmentState (EquipmentState equipmentState) {
         this.equipmentState = equipmentState;
     }
 

@@ -3,7 +3,7 @@ package oop.koyomia.boomberman.InputComponent.InputManagement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BombInputManager implements InputManager{
+public class BombInputManager implements InputManager {
     protected List<Integer> keyDown;
     protected List<Integer> keyUp;
 
@@ -19,6 +19,11 @@ public class BombInputManager implements InputManager{
     @Override
     public List<Integer> getKeyUp() {
         return this.keyUp;
+    }
+
+    @Override
+    public List<Integer> getKeyPress() {
+        return null;
     }
 
     @Override
