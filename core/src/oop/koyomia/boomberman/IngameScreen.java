@@ -58,7 +58,7 @@ public class IngameScreen implements Screen, InputProcessor {
         renderer.render();
         game.batch.begin();
         // GameUtils.renderFrame(game.batch, world);
-        //game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
+        // game.font.draw(game.batch, "Ingame Screen on!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
         game.batch.end();
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

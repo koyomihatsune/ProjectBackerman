@@ -1,6 +1,8 @@
 package oop.koyomia.boomberman.GameObject;
 import oop.koyomia.boomberman.ActiveEffectComponent.State.ActiveEffectState;
 import oop.koyomia.boomberman.ActiveEffectComponent.System.ActiveEffectSystem;
+import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentState;
+import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystem;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
@@ -8,7 +10,6 @@ import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.System.InputSystem;
 import oop.koyomia.boomberman.PassiveEffectComponent.State.PassiveEffectState;
 import oop.koyomia.boomberman.PassiveEffectComponent.System.PassiveEffectSystem;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicStatesMovableFactory;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateMovable;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
@@ -28,6 +29,9 @@ public class GameObject {
     protected PassiveEffectState passiveEffectState;
     protected PassiveEffectSystem passiveEffectSystem;
     protected TiledMapTileLayerExt.FreeCell cell;
+    protected EquipmentSystem equipmentSystem;
+    protected EquipmentState equipmentState;
+
 
     public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
         if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
@@ -73,6 +77,20 @@ public class GameObject {
 
     public void setPassiveEffectSystem(PassiveEffectSystem passiveEffectSystem) {
         this.passiveEffectSystem = passiveEffectSystem;
+    }
+
+    public void setEquipmentState (EquipmentState equipmentState) {
+        this.equipmentState = equipmentState;
+    }
+
+    public EquipmentState getEquipmentState() { return equipmentState; }
+
+    public void setEquipmentSystem(EquipmentSystem equipmentSystem) {
+        this.equipmentSystem = equipmentSystem;
+    }
+
+    public EquipmentSystem getEquipmentSystem() {
+        return equipmentSystem;
     }
 
     public GraphicState getGraphicState() {
@@ -148,4 +166,6 @@ public class GameObject {
             this.getPhysicsState().setYVel(0);
         }
     }
+
+
 }
