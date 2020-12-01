@@ -35,7 +35,7 @@ public class IngameScreen implements Screen, InputProcessor {
         this.game = game;
         playerInputManager = PlayerInputManager.getInstance();
         map = GameConfig.newGameInit(world, 0);
-        renderer = new OrthogonalTiledMapRendererExt(map, 3);
+        renderer = new OrthogonalTiledMapRendererExt(map, GameConfig.unitScale);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2,0);
         camera.update();
@@ -50,8 +50,9 @@ public class IngameScreen implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        for (GameObject gameObject : world) {
-            gameObject.update(world, delta);
+        int world_size = world.size();
+        for (int i = 0; i < world_size; i++) {
+            world.get(i).update(world, delta);
         }
         camera.update();
         renderer.setView(camera);
@@ -70,8 +71,6 @@ public class IngameScreen implements Screen, InputProcessor {
             shapeRenderer.rect(physicsRect.x * unitScale, physicsRect.y * unitScale, physicsRect.width * unitScale, physicsRect.height * unitScale);
         }
         shapeRenderer.end();
-        // clear input per frame
-        playerInputManager.clear();
     }
 
     @Override
@@ -106,7 +105,6 @@ public class IngameScreen implements Screen, InputProcessor {
      */
     @Override
     public boolean keyDown(int keycode) {
-        this.playerInputManager.getKeyDown().add(keycode);
         this.playerInputManager.getKeyPress().add(keycode);
         //System.out.println(keycode + " dang duoc bam");
         return false;
@@ -120,7 +118,6 @@ public class IngameScreen implements Screen, InputProcessor {
      */
     @Override
     public boolean keyUp(int keycode) {
-        this.playerInputManager.getKeyUp().add(keycode);
         this.playerInputManager.getKeyPress().remove(new Integer(keycode));
         return false;
     }
