@@ -1,5 +1,6 @@
 package oop.koyomia.boomberman.EquipmentComponent.System;
 
+import com.badlogic.gdx.Gdx;
 import oop.koyomia.boomberman.Command.Command;
 import oop.koyomia.boomberman.EquipmentComponent.EquipmentType;
 import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentState;
@@ -18,6 +19,9 @@ public class EquipmentSystemDefault implements EquipmentSystem {
     }
 
     public void update(@NotNull List<GameObject> world, float delta) {
-
+        EquipmentState equipmentState = this.self.getEquipmentState();
+        if (equipmentState.isCooldown()) {
+            equipmentState.countdown();
+        }
     }
 }

@@ -153,6 +153,7 @@ public class GameObject {
     }
 
     public void update(List<GameObject> world, float delta) {
+        this.equipmentSystem.update(world, delta);
         this.inputSystem.update(world, delta);
         this.physicsSystem.update(world, delta);
         this.activeEffectSystem.update(world, delta);

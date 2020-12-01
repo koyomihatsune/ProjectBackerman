@@ -11,4 +11,7 @@ public interface EquipmentState {
     Equipment useEquippedEquipment();
     void addEquipmentFromItem(Equipment equipmentToAdd);
     void restoreDefaultBomb();
+    public boolean isCooldown();
+    public void countdown();
+    public void setCooldownTimer(float value);
 }
