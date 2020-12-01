@@ -128,4 +128,8 @@ public class TiledMapTileLayerExt extends TiledMapTileLayer {
         changeCell.setFlipVertically(cell.getFlipVertically());
         changeCell.setRotation(cell.getRotation());
     }
+
+    public void removeCell(FreeCell cell) {
+        this.freeCells.remove(cell);
+    }
 }

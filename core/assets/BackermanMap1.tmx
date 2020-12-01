@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" source="maptileset.tsx"/>
  <tileset firstgid="1976" source="char1_16_32.tsx"/>
+ <tileset firstgid="2028" source="bomb2.tsx"/>
  <layer id="2" name="Map Base" width="17" height="15">
   <data encoding="csv">
 570,570,570,570,570,570,570,570,570,570,570,570,570,570,570,570,570,

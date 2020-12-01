@@ -1,34 +1,32 @@
 package oop.koyomia.boomberman.InputComponent.InputManagement;
 
+import com.badlogic.gdx.Input;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BombInputManager implements InputManager {
-    protected List<Integer> keyDown;
-    protected List<Integer> keyUp;
-
-    private BombInputManager() {
-
-    }
-
-    @Override
-    public List<Integer> getKeyDown() {
-        return this.keyDown;
-    }
-
-    @Override
-    public List<Integer> getKeyUp() {
-        return this.keyUp;
+public abstract class BombInputManager implements InputManager {
+    protected boolean activeExplode = false;
+    List<Integer> keyPress;
+    public BombInputManager() {
+        keyPress = new ArrayList<>();
     }
 
     @Override
     public List<Integer> getKeyPress() {
-        return null;
+        update();
+        if (activeExplode)
+            keyPress.add(Input.Keys.SPACE);
+        return keyPress;
     }
 
-    @Override
-    public void clear() {
-        this.keyDown.clear();
-        this.keyUp.clear();
+    public abstract void update();
+
+    public boolean isActiveExplode() {
+        return activeExplode;
+    }
+
+    public void setActiveExplode(boolean activeExplode) {
+        this.activeExplode = activeExplode;
     }
 }
