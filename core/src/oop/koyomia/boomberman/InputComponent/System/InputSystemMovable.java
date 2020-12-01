@@ -24,5 +24,4 @@ public class InputSystemMovable extends InputSystemDefault {
             if (executeCommand != null) executeCommand.execute(world, self);
         }
     }
-
 }
