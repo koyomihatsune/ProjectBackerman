@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="4" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="maptileset.tsx"/>
+ <tileset firstgid="1976" source="char1_16_32.tsx"/>
+ <layer id="1" name="Grass" width="4" height="4">
+  <data encoding="csv">
+403,403,403,403,
+403,403,403,403,
+403,403,403,403,
+403,403,403,403
+</data>
+ </layer>
+ <layer id="2" name="Up" width="4" height="4">
+  <data encoding="csv">
+385,385,385,385,
+385,0,0,385,
+385,1976,0,385,
+385,385,385,385
+</data>
+ </layer>
+</map>
