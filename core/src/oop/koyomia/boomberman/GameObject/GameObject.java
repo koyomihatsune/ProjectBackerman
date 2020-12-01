@@ -14,6 +14,7 @@ import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateMovable;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystem;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class GameObject {
@@ -31,12 +32,12 @@ public class GameObject {
     protected TiledMapTileLayerExt.FreeCell cell;
     protected EquipmentSystem equipmentSystem;
     protected EquipmentState equipmentState;
-
+    protected HashMap<String, Object> properties;
 
     public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
         if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
         this.cell = cell;
-
+        this.properties = new HashMap<>();
     }
 
     public String getType() {
@@ -167,5 +168,11 @@ public class GameObject {
         }
     }
 
+    public HashMap<String, Object> getProperties() {
+        return properties;
+    }
 
+    public void setProperties(HashMap<String, Object> properties) {
+        this.properties = properties;
+    }
 }
