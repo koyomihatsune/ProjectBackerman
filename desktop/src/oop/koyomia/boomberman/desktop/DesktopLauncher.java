@@ -19,7 +19,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle("Backerman");
 		config.setResizable(false);
-		config.setWindowedMode(1280,720);
+		config.setWindowedMode(820,720);
 		new Lwjgl3Application(new GameScene(), config);
 	}
 }

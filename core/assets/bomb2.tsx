@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+<tileset version="1.4" tiledversion="1.4.3" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
  <properties>
   <property name="bomb" type="int" value="0"/>
   <property name="bottom_explosion" type="int" value="37"/>
@@ -340,6 +340,17 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="53">
+  <animation>
+   <frame tileid="53" duration="200"/>
+   <frame tileid="54" duration="200"/>
+   <frame tileid="55" duration="200"/>
+   <frame tileid="56" duration="200"/>
+   <frame tileid="57" duration="200"/>
+   <frame tileid="58" duration="200"/>
+   <frame tileid="59" duration="200"/>
+  </animation>
+ </tile>
  <tile id="60">
   <objectgroup draworder="index" id="2">
    <object id="1" name="effect_range" x="0" y="0" width="16" height="16">
@@ -366,5 +377,36 @@
     </properties>
    </object>
   </objectgroup>
+ </tile>
+ <tile id="63">
+  <animation>
+   <frame tileid="63" duration="100"/>
+   <frame tileid="64" duration="100"/>
+   <frame tileid="65" duration="100"/>
+   <frame tileid="66" duration="100"/>
+   <frame tileid="67" duration="100"/>
+   <frame tileid="68" duration="100"/>
+   <frame tileid="69" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="73">
+  <animation>
+   <frame tileid="79" duration="100"/>
+   <frame tileid="73" duration="100"/>
+   <frame tileid="74" duration="100"/>
+   <frame tileid="75" duration="100"/>
+   <frame tileid="76" duration="100"/>
+   <frame tileid="77" duration="100"/>
+   <frame tileid="78" duration="100"/>
+   <frame tileid="79" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="80">
+  <animation>
+   <frame tileid="80" duration="200"/>
+   <frame tileid="81" duration="200"/>
+   <frame tileid="82" duration="200"/>
+   <frame tileid="83" duration="200"/>
+  </animation>
  </tile>
 </tileset>

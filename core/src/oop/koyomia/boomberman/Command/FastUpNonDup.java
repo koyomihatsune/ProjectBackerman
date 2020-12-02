@@ -1,6 +1,5 @@
 package oop.koyomia.boomberman.Command;
 
-import com.badlogic.gdx.Gdx;
 import oop.koyomia.boomberman.Effects.Effect;
 import oop.koyomia.boomberman.Effects.EffectType;
 import oop.koyomia.boomberman.GameObject.GameObject;
@@ -9,7 +8,7 @@ import oop.koyomia.boomberman.PassiveEffectComponent.State.PassiveEffectState;
 
 import java.util.List;
 
-public class SlowDownNonDup extends SlowDown {
+public class FastUpNonDup extends FastUp {
 
     @Override
     public void execute(List<GameObject> world, GameObject self) {
@@ -18,7 +17,7 @@ public class SlowDownNonDup extends SlowDown {
         if (passiveEffectState instanceof DefaultPassiveEffectState) {
             List<Effect> effects = ((DefaultPassiveEffectState) passiveEffectState).getEffectList();
             effects.forEach(i -> {
-                if (i.getType().equals(EffectType.SLOW_DOWN_NON_DUP)) {
+                if (i.getType().equals(EffectType.FAST_UP_NON_DUP)) {
                     i.setFinished(true);
                 }
             });

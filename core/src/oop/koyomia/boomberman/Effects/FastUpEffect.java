@@ -1,20 +1,19 @@
 package oop.koyomia.boomberman.Effects;
 
 import com.badlogic.gdx.Gdx;
-import oop.koyomia.boomberman.Command.Command;
-import oop.koyomia.boomberman.Command.SlowDown;
+import oop.koyomia.boomberman.Command.TimedFastUpNonDup;
 import oop.koyomia.boomberman.Command.TimedSlowDownNonDup;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
 import java.util.List;
 
-public class SlowDownEffect extends Effect {
+public class FastUpEffect extends Effect {
 
     boolean check = false;
     float timer = 0;
 
-    public SlowDownEffect() {
-        super(EffectType.SLOW_DOWN, new TimedSlowDownNonDup());
+    public FastUpEffect() {
+        super(EffectType.FAST_UP, new TimedFastUpNonDup());
     }
 
     @Override

@@ -200,6 +200,22 @@ public class GameObjectFactory {
                 gameObject.getProperties().put("breakable", false);
                 //give attention
                 break;
+            case "Sand" :
+                pstateF = PhysicsStateDefault::new;
+                psystemF = PhysicsSystemDefault::new;
+                gstateF = (self, tileSet) -> new GraphicStateDefault(self);
+                gsystemF = GraphicSystemDefault::new;
+                istateF = InputStateDefault::new;
+                isystemF = NonInputSystem::new;
+                aestateF = new DefaultActiveEffectStateFactory();
+                aesystemF = new DefaultActiveEffectSystemFactory();
+                pestateF = new NonPassiveEffectStateFactory();
+                pesystemF = new NonPassiveEffectSystemFactory();
+                estateF = new EquipmentStateMovableFactory();
+                esystemF = new EquipmentSystemMovableFactory();
+                gameObject.getProperties().put("breakable", false);
+                //give attention
+                break;
             case "Explosion" :
                 pstateF = PhysicsStateDefault::new;
                 psystemF = PhysicsSystemDefault::new;

@@ -14,15 +14,14 @@
   <objectgroup draworder="index" id="2">
    <object id="1" name="effect_range" x="0" y="0" width="16" height="16">
     <properties>
-     <property name="effect_type" value="SLOW_DOWN_NON_DUP"/>
+     <property name="effect_type" value="TIMED_SLOW_DOWN_NON_DUP"/>
     </properties>
    </object>
   </objectgroup>
  </tile>
  <tile id="257">
   <properties>
-   <property name="breakable" type="bool" value="true"/>
-   <property name="type" value="Flower"/>
+   <property name="isBreakable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" name="collision" x="0.5" y="1" width="15" height="14.1818"/>
@@ -30,19 +29,13 @@
  </tile>
  <tile id="282">
   <properties>
-   <property name="breakable" type="bool" value="false"/>
    <property name="isBreakable" type="bool" value="false"/>
-   <property name="type" value="Wall"/>
   </properties>
   <objectgroup draworder="index" id="4">
    <object id="8" name="collision" x="0.174387" y="0.174387" width="15.66" height="15.66"/>
   </objectgroup>
  </tile>
  <tile id="307">
-  <properties>
-   <property name="breakable" type="bool" value="true"/>
-   <property name="type" value="Flower"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" name="collision" x="0.5" y="1" width="15" height="14.1818"/>
   </objectgroup>
@@ -81,7 +74,6 @@
  </tile>
  <tile id="383">
   <properties>
-   <property name="breakable" type="bool" value="false"/>
    <property name="isBreakable" type="bool" value="false"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -90,7 +82,6 @@
  </tile>
  <tile id="384">
   <properties>
-   <property name="breakable" type="bool" value="false"/>
    <property name="isBreakable" type="bool" value="false"/>
   </properties>
   <objectgroup draworder="index" id="6">
@@ -99,23 +90,10 @@
  </tile>
  <tile id="385">
   <properties>
-   <property name="breakable" type="bool" value="false"/>
    <property name="isBreakable" type="bool" value="false"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" name="collision" x="0.069755" y="-1.81363" width="15.7995" height="15.7646"/>
-  </objectgroup>
- </tile>
- <tile id="433">
-  <properties>
-   <property name="type" value="Sand"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" name="effect_range" x="0.0826146" y="0.0826146" width="15.7794" height="15.7794">
-    <properties>
-     <property name="effect_type" value="FAST_UP_NON_DUP"/>
-    </properties>
-   </object>
   </objectgroup>
  </tile>
  <tile id="466">
@@ -138,26 +116,23 @@
    <object id="1" name="collision" x="0.104632" y="0.13951" width="15.7646" height="15.7995"/>
   </objectgroup>
  </tile>
- <tile id="689">
-  <properties>
-   <property name="type" value="Ice"/>
-  </properties>
+ <tile id="1124">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="effect_range" x="0.0826146" y="0.123922" width="15.8207" height="15.7381">
+   <object id="2" x="0.172573" y="0.258859" width="15.4453" height="15.359">
     <properties>
-     <property name="effect_type" value="SLOW_DOWN_NON_DUP"/>
+     <property name="isBreakable" type="bool" value="false"/>
     </properties>
    </object>
   </objectgroup>
  </tile>
  <tile id="1340">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="collision" x="16.256" y="-0.321152" width="0.592917" height="16.4622"/>
+   <object id="1" name="collision" x="15.381" y="-0.383652" width="0.592917" height="16.4622"/>
   </objectgroup>
  </tile>
  <tile id="1365">
   <objectgroup draworder="index" id="2">
-   <object id="1" name="collision" x="-0.5" y="-0.042132" width="0.313897" height="16.3575"/>
+   <object id="1" name="collision" x="0" y="-0.104632" width="0.313897" height="16.3575"/>
   </objectgroup>
  </tile>
 </tileset>

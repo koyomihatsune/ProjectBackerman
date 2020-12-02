@@ -1,6 +1,5 @@
 package oop.koyomia.boomberman.Command;
 
-import com.badlogic.gdx.Gdx;
 import oop.koyomia.boomberman.Effects.Effect;
 import oop.koyomia.boomberman.Effects.EffectType;
 import oop.koyomia.boomberman.GameObject.GameObject;
@@ -8,21 +7,24 @@ import oop.koyomia.boomberman.PassiveEffectComponent.State.DefaultPassiveEffectS
 import oop.koyomia.boomberman.PassiveEffectComponent.State.PassiveEffectState;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SlowDownNonDup extends SlowDown {
-
+public class TimedSlowDownNonDup extends SlowDown {
     @Override
     public void execute(List<GameObject> world, GameObject self) {
+        System.out.println("TimedSlowDownNonDup Called");
         super.execute(world, self);
         PassiveEffectState passiveEffectState = self.getPassiveEffectState();
         if (passiveEffectState instanceof DefaultPassiveEffectState) {
             List<Effect> effects = ((DefaultPassiveEffectState) passiveEffectState).getEffectList();
+            AtomicBoolean isFirst = new AtomicBoolean(false);
             effects.forEach(i -> {
-                if (i.getType().equals(EffectType.SLOW_DOWN_NON_DUP)) {
-                    i.setFinished(true);
+                if (i.getType().equals(EffectType.TIMED_SLOW_DOWN_NON_DUP)) {
+                    if (isFirst.get())
+                        i.setFinished(true);
+                    else isFirst.set(true);
                 }
             });
         }
     }
-
 }

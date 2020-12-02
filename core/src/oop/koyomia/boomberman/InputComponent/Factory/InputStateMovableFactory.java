@@ -18,4 +18,6 @@ public class InputStateMovableFactory implements InputStateFactory {
 
         return ipS;
     }
+
+
 }

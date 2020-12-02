@@ -11,6 +11,15 @@ import oop.koyomia.boomberman.GameObjectFactory;
 import java.util.List;
 
 public class DefaultBombPut implements Command {
+    public GameObject getBombObj() {
+        return bombObj;
+    }
+
+    public void setBombObj(GameObject bombObj) {
+        this.bombObj = bombObj;
+    }
+
+    private GameObject bombObj;
     @Override
     public void execute(List<GameObject> world, GameObject self) {
         Vector2 coor = GameConfig.getSquareCoor(self);
@@ -22,6 +31,7 @@ public class DefaultBombPut implements Command {
 
         GameObject newGameObj = GameObjectFactory.getGameObject(newCell);
         newGameObj.getProperties().put("owner", self);
+        this.bombObj = newGameObj;
         world.add(newGameObj);
         GameConfig.addCellToCharLayer(newCell);
         System.out.println("Bomb put!");

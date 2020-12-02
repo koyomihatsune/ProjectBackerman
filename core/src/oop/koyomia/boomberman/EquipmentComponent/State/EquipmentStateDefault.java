@@ -22,7 +22,7 @@ public class EquipmentStateDefault implements EquipmentState {
     }
 
     public void addEquipmentFromItem(Equipment equipmentToAdd){
-        if (equipmentStack.size() == 3){
+        if (equipmentStack.size() == 2){
             //is conflicting between put remote bomb and explode remote bomb
             equipmentStack.pop().onPop();
         }
