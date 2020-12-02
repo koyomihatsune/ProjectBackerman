@@ -49,7 +49,7 @@ public class GameConfig {
         Rectangle body = gameObject.getPhysicsState().getPhysicsBody();
         Vector2 particularCoor = new Vector2(body.x + body.getWidth() / 2, body.y + body.getHeight() / 2);
         Vector2 coor = new Vector2((int) (particularCoor.x / (tile_width)), (int) (particularCoor.y / (tile_height)));
-        if (coor.x >= tile_width || coor.y >= tile_height) throw new ArrayIndexOutOfBoundsException("Coor.x : " + coor.x + "Coor.y : " + coor.y);
+        if (!validateSquareCoor(coor)) throw new ArrayIndexOutOfBoundsException("Coor.x : " + coor.x + "Coor.y : " + coor.y);
         return coor;
     }
 

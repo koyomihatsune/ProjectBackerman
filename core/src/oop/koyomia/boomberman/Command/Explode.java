@@ -19,6 +19,9 @@ public class Explode implements Command {
             case "Bomb" :
                 if (concreteCommand == null) concreteCommand = new DefaultBombExplode();
                 break;
+            case "Flower" :
+                if (concreteCommand == null) concreteCommand = new BoxExplode();
+                break;
         }
         concreteCommand.execute(world, self);
         for (Effect effect : ((DefaultPassiveEffectState)self.getPassiveEffectState()).getEffectList()) {

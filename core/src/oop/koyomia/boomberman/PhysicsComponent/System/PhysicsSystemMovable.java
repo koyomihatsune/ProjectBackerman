@@ -2,6 +2,7 @@ package oop.koyomia.boomberman.PhysicsComponent.System;
 
 import com.badlogic.gdx.math.Rectangle;
 import oop.koyomia.boomberman.GameObject.GameObject;
+import oop.koyomia.boomberman.PhysicsComponent.State.BombPhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateMovable;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +22,15 @@ public class PhysicsSystemMovable extends PhysicsSystemDefault {
         List<GameObject> futureCollide = this.getOverlapList(futureRec, world, this.self);
         ((PhysicsStateMovable)this.self.getPhysicsState()).futureCollide = futureCollide;
         ((PhysicsStateMovable)this.self.getPhysicsState()).currentCollide = currentCollide;
+        if (futureCollide.size() != 0) {
+            for (int i = 0; i < futureCollide.size(); i++) {
+                if (futureCollide.get(i).getType().equals("Bomb") && ((BombPhysicsState)futureCollide.get(i).getPhysicsState()).getAcceptThrough() != null  && ((BombPhysicsState)futureCollide.get(i).getPhysicsState()).getAcceptThrough().contains(this.self)) {
+                    futureCollide.remove(i);
+                    i--;
+                }
+
+            }
+        }
         if (futureCollide.size() != 0) {
             this.self.getPhysicsState().setXVel(0f);
             this.self.getPhysicsState().setYVel(0f);
