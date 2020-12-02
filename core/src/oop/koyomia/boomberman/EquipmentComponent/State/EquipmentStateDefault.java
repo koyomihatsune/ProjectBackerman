@@ -1,5 +1,6 @@
 package oop.koyomia.boomberman.EquipmentComponent.State;
 
+import oop.koyomia.boomberman.Command.DefaultBombPut;
 import oop.koyomia.boomberman.Equipments.DefaultBombPutEquipment;
 import oop.koyomia.boomberman.Equipments.EmptyEquipment;
 import oop.koyomia.boomberman.Equipments.Equipment;
@@ -14,25 +15,30 @@ public class EquipmentStateDefault implements EquipmentState {
     public EquipmentStateDefault(GameObject gameObject){
         this.self = gameObject;
         this.equipmentStack = new Stack<>();
-        this.restoreDefaultBomb();
+        this.equipmentStack.push(new DefaultBombPutEquipment());
     }
 
     public void addEquipmentFromItem(Equipment equipmentToAdd){
-        if (equipmentStack.size()==2){
+        if (equipmentStack.size() == 3){
             //is conflicting between put remote bomb and explode remote bomb
-            useEquippedEquipment();
+            equipmentStack.pop().onPop();
         }
         equipmentStack.push(equipmentToAdd);
     }
 
     public Equipment useEquippedEquipment(){
-        if (equipmentStack.size()!=0)
-            return equipmentStack.pop();
-        return new EmptyEquipment();
+        if (equipmentStack.peek().isStillValidate())
+            return equipmentStack.peek();
+        else equipmentStack.pop();
+        return equipmentStack.peek();
+    }
+
+    public Stack<Equipment> getEquipmentStack() {
+        return equipmentStack;
     }
 
     //whenever default bomb explode, put back to the first of stack
     public void restoreDefaultBomb(){
-        equipmentStack.add(0, new DefaultBombPutEquipment());
+        ((DefaultBombPutEquipment)equipmentStack.get(0)).incBombRemain();
     }
 }

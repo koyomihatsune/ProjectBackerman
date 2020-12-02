@@ -2,11 +2,14 @@ package oop.koyomia.boomberman.PhysicsComponent.State;
 
 import oop.koyomia.boomberman.GameObject.GameObject;
 
+import java.util.List;
+
 public class PhysicsStateMovable extends PhysicsStateDefault{
     public PhysicsStateMovable(GameObject self) {
         super(self);
     }
-
+    public List<GameObject> futureCollide;
+    public List<GameObject> currentCollide;
     @Override
     public float getXVel() {
         return this.x_vel;

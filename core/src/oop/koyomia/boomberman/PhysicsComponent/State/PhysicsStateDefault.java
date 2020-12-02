@@ -57,11 +57,9 @@ public class PhysicsStateDefault implements PhysicsState {
 
     @Override
     public void setXVel(float x_vel) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
     public void setYVel(float y_vel) {
-        throw new UnsupportedOperationException();
     }
 }

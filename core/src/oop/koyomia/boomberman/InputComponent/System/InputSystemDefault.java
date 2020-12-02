@@ -19,8 +19,16 @@ public class InputSystemDefault extends NonInputSystem {
         InputManager inputManager = this.self.getInputState().getInputManager();
         for (Integer keycode : inputManager.getKeyPress()) {
             Command executeCommand;
-            executeCommand = inputState.getCommand(keycode);
+            executeCommand = inputState.getPressCommand(keycode);
             if (executeCommand != null) executeCommand.execute(world, self);
+
+        }
+
+        for (Integer keycode : inputManager.getKeyDown()) {
+            Command executeCommand;
+            executeCommand = inputState.getKeyDownCommand(keycode);
+            if (executeCommand != null) executeCommand.execute(world, self);
+
         }
     }
 

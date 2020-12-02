@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.2" name="char1_16_32" tilewidth="16" tileheight="32" tilecount="52" columns="4">
  <properties>
+  <property name="died" type="int" value="32"/>
   <property name="go_down" type="int" value="0"/>
   <property name="go_left" type="int" value="12"/>
   <property name="go_right" type="int" value="4"/>
@@ -109,6 +110,16 @@
    <frame tileid="25" duration="410"/>
    <frame tileid="26" duration="410"/>
    <frame tileid="27" duration="410"/>
+  </animation>
+ </tile>
+ <tile id="32">
+  <animation>
+   <frame tileid="32" duration="150"/>
+   <frame tileid="39" duration="80"/>
+   <frame tileid="32" duration="150"/>
+   <frame tileid="39" duration="80"/>
+   <frame tileid="32" duration="150"/>
+   <frame tileid="39" duration="80"/>
   </animation>
  </tile>
 </tileset>
