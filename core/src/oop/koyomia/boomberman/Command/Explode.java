@@ -14,13 +14,18 @@ public class Explode implements Command {
         switch (self.getType()) {
             case "Main" :
                 if (concreteCommand == null) concreteCommand = new CharExplode();
-
                 break;
             case "Bomb" :
                 if (concreteCommand == null) concreteCommand = new DefaultBombExplode();
                 break;
             case "Flower" :
+                if (concreteCommand == null) concreteCommand = new RemoveObj();
+                break;
+            case "Box" :
                 if (concreteCommand == null) concreteCommand = new BoxExplode();
+                break;
+            default:
+                concreteCommand = new DoNothing();
                 break;
         }
         concreteCommand.execute(world, self);
