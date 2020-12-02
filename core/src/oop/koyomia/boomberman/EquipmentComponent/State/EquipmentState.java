@@ -1,8 +1,6 @@
 package oop.koyomia.boomberman.EquipmentComponent.State;
 
-import oop.koyomia.boomberman.EquipmentComponent.EquipmentType;
 import oop.koyomia.boomberman.Equipments.Equipment;
-import oop.koyomia.boomberman.GameObject.GameObject;
 
 import java.util.Stack;
 
