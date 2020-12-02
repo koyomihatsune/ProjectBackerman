@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="PC Computer - Stardew Valley - Outdoors Spring" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
+<tileset version="1.4" tiledversion="1.4.2" name="PC Computer - Stardew Valley - Outdoors Spring" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
  <image source="PC Computer - Stardew Valley - Outdoors Spring.png" width="400" height="1264"/>
  <tile id="0" type="empty"/>
  <tile id="117">
@@ -106,18 +106,6 @@
    <object id="2" name="collision" x="0.069755" y="-1.81363" width="15.7995" height="15.7646"/>
   </objectgroup>
  </tile>
- <tile id="433">
-  <properties>
-   <property name="type" value="Sand"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" name="effect_range" x="0.0826146" y="0.0826146" width="15.7794" height="15.7794">
-    <properties>
-     <property name="effect_type" value="FAST_UP_NON_DUP"/>
-    </properties>
-   </object>
-  </objectgroup>
- </tile>
  <tile id="466">
   <objectgroup draworder="index" id="2">
    <object id="1" name="collision" x="0.104632" y="0.13951" width="15.7646" height="15.6949"/>
@@ -136,18 +124,6 @@
  <tile id="469">
   <objectgroup draworder="index" id="2">
    <object id="1" name="collision" x="0.104632" y="0.13951" width="15.7646" height="15.7995"/>
-  </objectgroup>
- </tile>
- <tile id="689">
-  <properties>
-   <property name="type" value="Ice"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" name="effect_range" x="0.0826146" y="0.123922" width="15.8207" height="15.7381">
-    <properties>
-     <property name="effect_type" value="SLOW_DOWN_NON_DUP"/>
-    </properties>
-   </object>
   </objectgroup>
  </tile>
  <tile id="1340">

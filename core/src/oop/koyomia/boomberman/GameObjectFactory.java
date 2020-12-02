@@ -28,11 +28,14 @@ import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateMovableFactor
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsStateFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemMovableFactory;
+import oop.koyomia.boomberman.PhysicsComponent.State.BombPhysicsState;
 import oop.koyomia.boomberman.PhysicsComponent.State.PhysicsStateDefault;
+import oop.koyomia.boomberman.PhysicsComponent.System.BombPhysicsSystem;
 import oop.koyomia.boomberman.PhysicsComponent.System.PhysicsSystemDefault;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameObjectFactory {
@@ -54,7 +57,9 @@ public class GameObjectFactory {
         for (MapLayer layer : map.getLayers()) {
             TiledMapTileLayerExt layerExt = (TiledMapTileLayerExt) layer;
             for (TiledMapTileLayerExt.FreeCell cell : layerExt.freeCells) {
-                world.add(getGameObject(cell));
+                GameObject newGameObj = getGameObject(cell);
+                newGameObj.setCellLayer(layerExt);
+                world.add(newGameObj);
 //                String type;
 //                GameObject gameObject = new GameObject(cell);
 //                try {
@@ -170,8 +175,8 @@ public class GameObjectFactory {
                 gameObject.getProperties().put("breakable", true);
                 break;
             case "Bomb" :
-                pstateF = PhysicsStateDefault::new;
-                psystemF = PhysicsSystemDefault::new;
+                pstateF = BombPhysicsState::new;
+                psystemF = BombPhysicsSystem::new;
                 gstateF = (self, tileSet) -> new GraphicStateDefault(self);
                 gsystemF = GraphicSystemDefault::new;
                 istateF = new TimerBombInputStateFactory();
@@ -185,22 +190,6 @@ public class GameObjectFactory {
                 gameObject.getProperties().put("breakable", true);
                 break;
             case "Ice" :
-                pstateF = PhysicsStateDefault::new;
-                psystemF = PhysicsSystemDefault::new;
-                gstateF = (self, tileSet) -> new GraphicStateDefault(self);
-                gsystemF = GraphicSystemDefault::new;
-                istateF = InputStateDefault::new;
-                isystemF = NonInputSystem::new;
-                aestateF = new DefaultActiveEffectStateFactory();
-                aesystemF = new DefaultActiveEffectSystemFactory();
-                pestateF = new NonPassiveEffectStateFactory();
-                pesystemF = new NonPassiveEffectSystemFactory();
-                estateF = new EquipmentStateMovableFactory();
-                esystemF = new EquipmentSystemMovableFactory();
-                gameObject.getProperties().put("breakable", false);
-                //give attention
-                break;
-            case "Sand" :
                 pstateF = PhysicsStateDefault::new;
                 psystemF = PhysicsSystemDefault::new;
                 gstateF = (self, tileSet) -> new GraphicStateDefault(self);
@@ -230,6 +219,21 @@ public class GameObjectFactory {
                 estateF = new EquipmentStateMovableFactory();
                 esystemF = new EquipmentSystemMovableFactory();
                 break;
+            case "Flower" :
+                pstateF = PhysicsStateDefault::new;
+                psystemF = PhysicsSystemDefault::new;
+                gstateF = (self, tileSet) -> new GraphicStateDefault(self);
+                gsystemF = GraphicSystemDefault::new;
+                istateF = InputStateDefault::new;
+                isystemF = NonInputSystem::new;
+                aestateF = new NonActiveEffectStateFactory();
+                aesystemF = new NonActiveEffectSystemFactory();
+                pestateF = new DefaultPassiveEffectStateFactory();
+                pesystemF = new DefaultPassiveEffectSystemFactory();
+                estateF = EquipmentStateDefault::new;
+                esystemF = EquipmentSystemDefault::new;
+                gameObject.getProperties().put("breakable", true);
+                break;
             default:
                 //throw new IllegalStateException("Unexpected value: " + type);
                 pstateF = PhysicsStateDefault::new;
@@ -242,9 +246,8 @@ public class GameObjectFactory {
                 aesystemF = new NonActiveEffectSystemFactory();
                 pestateF = new NonPassiveEffectStateFactory();
                 pesystemF = new NonPassiveEffectSystemFactory();
-                estateF = self -> new EquipmentStateDefault(self);
-                esystemF = self -> new EquipmentSystemDefault(self);
-                gameObject.getProperties().put("breakable", false);
+                estateF = EquipmentStateDefault::new;
+                esystemF = EquipmentSystemDefault::new;
                 break;
         }
         gameObject.setInputState(istateF.createInstance(gameObject));
@@ -262,6 +265,10 @@ public class GameObjectFactory {
         gameObject.setEquipmentSystem(esystemF.createInstance(gameObject));
         gameObject.setType(type);
         gameObject.getProperties().put("isAlive", true);
+        for (Iterator<String> it = gameObject.getCell().getTile().getProperties().getKeys(); it.hasNext(); ) {
+            String property = it.next();
+            gameObject.getProperties().put(property, gameObject.getCell().getTile().getProperties().get(property));
+        }
         return gameObject;
     }
 

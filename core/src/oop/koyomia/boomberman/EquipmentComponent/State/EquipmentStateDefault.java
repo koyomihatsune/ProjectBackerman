@@ -1,6 +1,5 @@
 package oop.koyomia.boomberman.EquipmentComponent.State;
 
-import com.badlogic.gdx.Gdx;
 import oop.koyomia.boomberman.Command.DefaultBombPut;
 import oop.koyomia.boomberman.Equipments.DefaultBombPutEquipment;
 import oop.koyomia.boomberman.Equipments.EmptyEquipment;
@@ -12,8 +11,6 @@ import java.util.Stack;
 public class EquipmentStateDefault implements EquipmentState {
     GameObject self;
     Stack<Equipment> equipmentStack;
-    boolean cooldown;
-    float cooldownTimer;
 
     public EquipmentStateDefault(GameObject gameObject){
         this.self = gameObject;
@@ -23,7 +20,7 @@ public class EquipmentStateDefault implements EquipmentState {
 
     public void addEquipmentFromItem(Equipment equipmentToAdd){
         if (equipmentStack.size() == 2){
-            //is conflicting between put remote bomb and explode remote bomb
+            // is conflicting between put remote bomb and explode remote bomb
             equipmentStack.pop().onPop();
         }
         equipmentStack.push(equipmentToAdd);
@@ -43,24 +40,5 @@ public class EquipmentStateDefault implements EquipmentState {
     //whenever default bomb explode, put back to the first of stack
     public void restoreDefaultBomb(){
         ((DefaultBombPutEquipment)equipmentStack.get(0)).incBombRemain();
-    }
-
-    public boolean isCooldown() {
-        return cooldown;
-    }
-
-    public void setCooldownTimer(float value){
-        System.out.println("Cooldown start.");
-        cooldown = true;
-        cooldownTimer = value;
-    }
-
-    public void countdown() {
-        cooldownTimer -= Gdx.graphics.getDeltaTime();
-        if (cooldownTimer <=0) {
-            System.out.println("Cooldown end.");
-            cooldownTimer = 0;
-            cooldown = false;
-        }
     }
 }

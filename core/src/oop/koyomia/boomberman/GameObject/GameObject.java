@@ -30,9 +30,18 @@ public class GameObject {
     protected PassiveEffectState passiveEffectState;
     protected PassiveEffectSystem passiveEffectSystem;
     protected TiledMapTileLayerExt.FreeCell cell;
+    protected TiledMapTileLayerExt cellLayer;
     protected EquipmentSystem equipmentSystem;
     protected EquipmentState equipmentState;
     protected HashMap<String, Object> properties;
+
+    public TiledMapTileLayerExt getCellLayer() {
+        return cellLayer;
+    }
+
+    public void setCellLayer(TiledMapTileLayerExt cellLayer) {
+        this.cellLayer = cellLayer;
+    }
 
     public GameObject(TiledMapTileLayerExt.FreeCell cell ) {
         if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
