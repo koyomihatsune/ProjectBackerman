@@ -228,7 +228,7 @@ public class GameObjectFactory {
                 pesystemF = new NonPassiveEffectSystemFactory();
                 estateF = self -> new EquipmentStateDefault(self);
                 esystemF = self -> new EquipmentSystemDefault(self);
-                gameObject.getProperties().put("breakable", true);
+                gameObject.getProperties().put("breakable", false);
                 break;
         }
         gameObject.setInputState(istateF.createInstance(gameObject));
