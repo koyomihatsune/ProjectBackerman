@@ -19,9 +19,9 @@ public class EquipmentSystemDefault implements EquipmentSystem {
     }
 
     public void update(@NotNull List<GameObject> world, float delta) {
-        EquipmentState equipmentState = this.self.getEquipmentState();
-        if (equipmentState.isCooldown()) {
-            equipmentState.countdown();
-        }
+//        EquipmentState equipmentState = this.self.getEquipmentState();
+//        if (equipmentState.isCooldown()) {
+//            equipmentState.countdown();
+//        }
     }
 }
