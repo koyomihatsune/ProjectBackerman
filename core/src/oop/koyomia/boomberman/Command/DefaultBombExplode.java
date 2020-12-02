@@ -28,10 +28,6 @@ public class DefaultBombExplode implements Command {
         GameObject newGameObj = GameObjectFactory.getGameObject(newCell);
         world.add(newGameObj);
         GameConfig.addCellToCharLayer(newCell);
-        Vector2 bot = new Vector2(center.x, center.y - 1);
-        Vector2 up = new Vector2(center.x, center.y + 1);
-        Vector2 left = new Vector2(center.x - 1, center.y);
-        Vector2 right = new Vector2(center.x + 1, center.y);
         int max_left = 0;
         int max_right = 0;
         int max_up = 0;
