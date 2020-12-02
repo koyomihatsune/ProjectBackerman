@@ -19,6 +19,7 @@ public class DefaultBombPut implements Command {
                 new AnimatedTiledMapTileExt((AnimatedTiledMapTile) GameConfig.mapSpecialTile.get(GameConfig.map.getTileSets().getTileSet("bomb2")).get("bomb")),
                 GameConfig.tile_width * coor.x, GameConfig.tile_height * coor.y
         );
+
         GameObject newGameObj = GameObjectFactory.getGameObject(newCell);
         newGameObj.getProperties().put("owner", self);
         world.add(newGameObj);

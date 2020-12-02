@@ -14,7 +14,6 @@ public class SlowDownEffect extends Effect {
     @Override
     public void execute(GameObject target, List<GameObject> world) {
         super.execute(target, world);
-        this.command.execute(world, target);
         this.isFinished = true;
     }
 }

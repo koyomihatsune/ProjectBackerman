@@ -10,11 +10,12 @@ public class InputStateMovableFactory implements InputStateFactory {
     @Override
     public InputState createInstance(GameObject self) {
         InputState ipS = new InputStateDefault(self);
-        ipS.addCommand(Input.Keys.W, new MoveUp());
-        ipS.addCommand(Input.Keys.S, new MoveDown());
-        ipS.addCommand(Input.Keys.A, new MoveLeft());
-        ipS.addCommand(Input.Keys.D, new MoveRight());
-        ipS.addCommand(Input.Keys.SPACE, new Fire());
+        ipS.addPressCommand(Input.Keys.W, new MoveUp());
+        ipS.addPressCommand(Input.Keys.S, new MoveDown());
+        ipS.addPressCommand(Input.Keys.A, new MoveLeft());
+        ipS.addPressCommand(Input.Keys.D, new MoveRight());
+        ipS.addKeyDownCommand(Input.Keys.SPACE, new Fire());
+
         return ipS;
     }
 }

@@ -7,12 +7,14 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import oop.koyomia.boomberman.GDXLibExtend.OrthogonalTiledMapRendererExt;
+import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.InputComponent.InputManagement.PlayerInputManager;
 
@@ -70,7 +72,18 @@ public class IngameScreen implements Screen, InputProcessor {
             float unitScale = or.getUnitScale();
             shapeRenderer.rect(physicsRect.x * unitScale, physicsRect.y * unitScale, physicsRect.width * unitScale, physicsRect.height * unitScale);
         }
+
         shapeRenderer.end();
+        world.removeIf(i -> {
+            if (!(Boolean) i.getProperties().get("isAlive")) {
+                for (MapLayer layer : GameConfig.map.getLayers()) {
+                    ((TiledMapTileLayerExt) layer).removeCell(i.getCell());
+                }
+                return true ;
+            }
+            return false;
+        });
+        this.playerInputManager.getKeyDown().clear();
     }
 
     @Override
@@ -106,6 +119,7 @@ public class IngameScreen implements Screen, InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         this.playerInputManager.getKeyPress().add(keycode);
+        this.playerInputManager.getKeyDown().add(keycode);
         //System.out.println(keycode + " dang duoc bam");
         return false;
     }

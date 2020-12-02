@@ -17,6 +17,7 @@ public class AnimatedTiledMapTileExt extends AnimatedTiledMapTile {
     private int id;
     private MapProperties properties;
     private MapObjects objects;
+    private boolean animationFinished = false;
     /**
      * Creates an animated tile with the given animation interval and frame tiles.
      *
@@ -52,6 +53,17 @@ public class AnimatedTiledMapTileExt extends AnimatedTiledMapTile {
         this.properties = animatedTiledMapTile.getProperties();
         this.objects = animatedTiledMapTile.getObjects();
     }
+    public AnimatedTiledMapTileExt(AnimatedTiledMapTile animatedTiledMapTile, String loopType) {
+        super(new IntArray(animatedTiledMapTile.getAnimationIntervals()), new Array<StaticTiledMapTile>(animatedTiledMapTile.getFrameTiles()));
+        this.timer = 0;
+        for (int i = 0; i < animatedTiledMapTile.getAnimationIntervals().length; i++) {
+            this.loopDuration += animatedTiledMapTile.getAnimationIntervals()[i];
+        }
+        this.id = animatedTiledMapTile.getId();
+        this.properties = animatedTiledMapTile.getProperties();
+        this.objects = animatedTiledMapTile.getObjects();
+        this.loopType = loopType;
+    }
 
     @Override
     public int getId() {
@@ -75,16 +87,14 @@ public class AnimatedTiledMapTileExt extends AnimatedTiledMapTile {
 
     @Override
     public int getCurrentFrameIndex() {
-        int currentTime = (int)(timer * 1000 % loopDuration);
-        int temp = currentTime;
-        long count = 0;
         switch (loopType) {
             case "Default" :
+                int currentTime = (int)(timer * 1000 % loopDuration);
                 for (int i = 0; i < this.getAnimationIntervals().length; ++i) {
                     int animationInterval = this.getAnimationIntervals()[i];
                     if (currentTime <= animationInterval) {
                         if (Gdx.graphics.getFrameId() != this.currFrameId) {
-                            this.timer = this.timer + Gdx.graphics.getDeltaTime();
+                            this.timer = (this.timer + Gdx.graphics.getDeltaTime()) % ((float)(loopDuration) / 1000);
                             this.currFrameId = Gdx.graphics.getFrameId();
                         }
                         return i;
@@ -93,12 +103,20 @@ public class AnimatedTiledMapTileExt extends AnimatedTiledMapTile {
                 }
                 break;
             case "Once" :
-                if (timer > loopDuration) return this.getAnimationIntervals().length - 1;
+                currentTime = (int) timer;
+                if (timer > loopDuration) {
+                    this.animationFinished = true;
+                    return this.getAnimationIntervals().length - 1;
+                }
                 for (int i = 0; i < this.getAnimationIntervals().length; ++i) {
                     int animationInterval = this.getAnimationIntervals()[i];
                     if (currentTime <= animationInterval) {
-                        this.timer += (long) (Gdx.graphics.getDeltaTime() * 1000);
+                        if (Gdx.graphics.getFrameId() != this.currFrameId) {
+                            this.timer += (Gdx.graphics.getDeltaTime() * 1000);
+                            this.currFrameId = Gdx.graphics.getFrameId();
+                        }
                         return i;
+
                     }
                     currentTime -= animationInterval;
                 }
@@ -107,5 +125,9 @@ public class AnimatedTiledMapTileExt extends AnimatedTiledMapTile {
 
         throw new GdxRuntimeException(
                 "Could not determine current animation frame in AnimatedTiledMapTile.  This should never happen.");
+    }
+
+    public boolean isAnimationFinished() {
+        return animationFinished;
     }
 }

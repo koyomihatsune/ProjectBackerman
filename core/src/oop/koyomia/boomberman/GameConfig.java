@@ -9,6 +9,7 @@ import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateMovable;
 import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -78,6 +79,22 @@ public class GameConfig {
                 }
             }
         }
+    }
+
+    public static Vector2 getParticularCoor(Vector2 squareCoor) {
+        return new Vector2(squareCoor.x * GameConfig.tile_width, squareCoor.y * GameConfig.tile_height);
+    }
+
+    public static List<GameObject> getOverlapList(Rectangle rec, List<GameObject> world, GameObject ignoreObj) {
+        List<GameObject> overlapList = new ArrayList<>();
+        world.forEach((i) -> {if (rec.overlaps(i.getPhysicsState().getPhysicsBody()) && i.getPhysicsState().getPhysicsBody().getWidth() != 0 && i.getPhysicsState().getPhysicsBody().getHeight() != 0) overlapList.add(i);});
+        if (ignoreObj != null) overlapList.remove(ignoreObj);
+        return overlapList;
+    }
+
+    public static boolean validateSquareCoor(Vector2 squareCoor) {
+        if (squareCoor.x >= map_width || squareCoor.x < 0 || squareCoor.y >= map_height || squareCoor.y < 0) return false;
+        return true;
     }
 
 

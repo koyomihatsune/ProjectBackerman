@@ -11,7 +11,7 @@ public class TimerBombInputStateFactory implements InputStateFactory {
     @Override
     public InputState createInstance(GameObject self) {
         InputState ipS = new InputStateDefault(self);
-        ipS.addCommand(Input.Keys.SPACE, new DefaultBombExplode());
+        ipS.addPressCommand(Input.Keys.SPACE, new DefaultBombExplode());
         ipS.setInputManager(new TimerBombInputManager(3));
         return ipS;
     }

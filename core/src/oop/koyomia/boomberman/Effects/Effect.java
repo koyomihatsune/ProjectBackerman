@@ -17,6 +17,7 @@ public class Effect {
     }
     public void execute(GameObject target, List<GameObject> world) {
         if (isFinished) this.command = new DoNothing();
+        this.command.execute(world, target);
     };
 
     public boolean isFinished() {
