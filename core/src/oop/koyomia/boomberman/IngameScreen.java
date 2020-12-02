@@ -66,12 +66,12 @@ public class IngameScreen implements Screen, InputProcessor {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
-        for (GameObject gameObject : world) {
-            Rectangle physicsRect = gameObject.getPhysicsState().getPhysicsBody();
-            OrthogonalTiledMapRendererExt or = (OrthogonalTiledMapRendererExt)renderer;
-            float unitScale = or.getUnitScale();
-            shapeRenderer.rect(physicsRect.x * unitScale, physicsRect.y * unitScale, physicsRect.width * unitScale, physicsRect.height * unitScale);
-        }
+//        for (GameObject gameObject : world) {
+//            Rectangle physicsRect = gameObject.getPhysicsState().getPhysicsBody();
+//            OrthogonalTiledMapRendererExt or = (OrthogonalTiledMapRendererExt)renderer;
+//            float unitScale = or.getUnitScale();
+//            shapeRenderer.rect(physicsRect.x * unitScale, physicsRect.y * unitScale, physicsRect.width * unitScale, physicsRect.height * unitScale);
+//        }
 
         shapeRenderer.end();
         world.removeIf(i -> {

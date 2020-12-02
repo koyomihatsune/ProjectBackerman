@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import oop.koyomia.boomberman.ActiveEffectComponent.Factory.*;
+import oop.koyomia.boomberman.ActiveEffectComponent.System.ItemActiveEffectSystem;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateFactory;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentStateMovableFactory;
 import oop.koyomia.boomberman.EquipmentComponent.Factory.EquipmentSystemFactory;
@@ -18,10 +19,12 @@ import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicStateMovableFactor
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemFactory;
 import oop.koyomia.boomberman.GraphicComponent.Factory.GraphicSystemMovableFactory;
 import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateDefault;
+import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateMovable;
+import oop.koyomia.boomberman.GraphicComponent.System.BoxGraphicSystem;
 import oop.koyomia.boomberman.GraphicComponent.System.ExplosionGraphicSystem;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemDefault;
+import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystemMovable;
 import oop.koyomia.boomberman.InputComponent.Factory.*;
-import oop.koyomia.boomberman.InputComponent.System.InputSystemBot;
 import oop.koyomia.boomberman.PassiveEffectComponent.Factory.*;
 import oop.koyomia.boomberman.InputComponent.State.InputStateDefault;
 import oop.koyomia.boomberman.InputComponent.System.NonInputSystem;
@@ -175,23 +178,6 @@ public class GameObjectFactory {
                 esystemF = new EquipmentSystemMovableFactory();
                 gameObject.getProperties().put("breakable", true);
                 break;
-            case "Enemy" :
-                pstateF = new PhysicsStateMovableFactory();
-                psystemF = new PhysicsSystemMovableFactory();
-                gstateF = new GraphicStateMovableFactory();
-                gsystemF = new GraphicSystemMovableFactory();
-                istateF = new MainCharInputStateFactory2();
-                isystemF = new InputSystemMovableFactory();
-                //istateF = new EnemyCharInputStateFactory();
-                //isystemF =InputSystemBot::new;
-                aestateF = new NonActiveEffectStateFactory();
-                aesystemF = new NonActiveEffectSystemFactory();
-                pestateF = new DefaultPassiveEffectStateFactory();
-                pesystemF = new DefaultPassiveEffectSystemFactory();
-                estateF = new EquipmentStateMovableFactory();
-                esystemF = new EquipmentSystemMovableFactory();
-                gameObject.getProperties().put("breakable", true);
-                break;
             case "Bomb" :
                 pstateF = BombPhysicsState::new;
                 psystemF = BombPhysicsSystem::new;
@@ -208,6 +194,7 @@ public class GameObjectFactory {
                 gameObject.getProperties().put("breakable", true);
                 break;
             case "Ice" :
+            case "Sand" :
                 pstateF = PhysicsStateDefault::new;
                 psystemF = PhysicsSystemDefault::new;
                 gstateF = (self, tileSet) -> new GraphicStateDefault(self);
@@ -222,6 +209,21 @@ public class GameObjectFactory {
                 esystemF = new EquipmentSystemMovableFactory();
                 gameObject.getProperties().put("breakable", false);
                 //give attention
+                break;
+            //give attention
+            case "Box" :
+                pstateF = PhysicsStateDefault::new;
+                psystemF = PhysicsSystemDefault::new;
+                gstateF = new GraphicStateMovableFactory();
+                gsystemF = BoxGraphicSystem::new;
+                istateF = InputStateDefault::new;
+                isystemF = NonInputSystem::new;
+                aestateF = new NonActiveEffectStateFactory();
+                aesystemF = new NonActiveEffectSystemFactory();
+                pestateF = new DefaultPassiveEffectStateFactory();
+                pesystemF = new DefaultPassiveEffectSystemFactory();
+                estateF = new EquipmentStateMovableFactory();
+                esystemF = new EquipmentSystemMovableFactory();
                 break;
             case "Explosion" :
                 pstateF = PhysicsStateDefault::new;
@@ -251,6 +253,20 @@ public class GameObjectFactory {
                 estateF = EquipmentStateDefault::new;
                 esystemF = EquipmentSystemDefault::new;
                 gameObject.getProperties().put("breakable", true);
+                break;
+            case "Item" :
+                pstateF = PhysicsStateDefault::new;
+                psystemF = PhysicsSystemDefault::new;
+                gstateF = (self, tileSet) -> new GraphicStateDefault(self);
+                gsystemF = BoxGraphicSystem::new;
+                istateF = InputStateDefault::new;
+                isystemF = NonInputSystem::new;
+                aestateF = new DefaultActiveEffectStateFactory();
+                aesystemF = ItemActiveEffectSystem::new;
+                pestateF = new DefaultPassiveEffectStateFactory();
+                pesystemF = new DefaultPassiveEffectSystemFactory();
+                estateF = new EquipmentStateMovableFactory();
+                esystemF = new EquipmentSystemMovableFactory();
                 break;
             default:
                 //throw new IllegalStateException("Unexpected value: " + type);

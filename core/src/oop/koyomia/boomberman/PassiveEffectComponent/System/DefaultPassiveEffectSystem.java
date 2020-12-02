@@ -19,7 +19,7 @@ public class DefaultPassiveEffectSystem implements PassiveEffectSystem {
     public void update(List<GameObject> world, float delta) {
         List<Effect> currentEffecting = ((DefaultPassiveEffectState)self.getPassiveEffectState()).getEffectList();
         // Active Effect per frame
-        if (currentEffecting != null)
+        if (currentEffecting != null && currentEffecting.size() != 0)
             for (Effect effect : currentEffecting) {
                 effect.execute(this.self, world);
             }

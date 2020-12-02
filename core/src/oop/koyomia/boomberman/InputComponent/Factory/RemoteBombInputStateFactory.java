@@ -13,9 +13,7 @@ public class RemoteBombInputStateFactory implements InputStateFactory {
     @Override
     public InputState createInstance(GameObject self) {
         InputState ipS = new InputStateDefault(self);
-        ipS.addPressCommand(Input.Keys.SPACE, new RemoteBombExplode());
         ipS.setInputManager(new RemoteBombInputManager());
         return ipS;
     }
-
 }
