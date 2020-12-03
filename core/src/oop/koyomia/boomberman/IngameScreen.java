@@ -1,9 +1,6 @@
 package oop.koyomia.boomberman;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -18,6 +15,7 @@ import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.InputComponent.InputManagement.PlayerInputManager;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -25,11 +23,13 @@ import java.util.Stack;
 public class IngameScreen implements Screen, InputProcessor {
     GameScene game;
     PlayerInputManager playerInputManager;
+    boolean isContinue = true;
     private List<GameObject> world = new ArrayList<>();
     private OrthographicCamera camera;
     private TiledMap map;
     private TiledMapRenderer renderer;
     private ShapeRenderer shapeRenderer;
+
     public IngameScreen(GameScene game){
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -84,6 +84,27 @@ public class IngameScreen implements Screen, InputProcessor {
             return false;
         });
         this.playerInputManager.getKeyDown().clear();
+        boolean remainMain = false;
+        boolean remainEnemy = false;
+        for (GameObject gameObject : world){
+            if (gameObject.getType().equals("Main")){
+                remainMain = true;
+            }
+            if (gameObject.getType().equals("Main")){
+                remainEnemy = true;
+            }
+        }
+
+        if (!remainEnemy) {
+            MenuScreen menuScreen = new MenuScreen(game,"Player 2 Won!");
+            game.setScreen(menuScreen);
+            //Gdx.input.setInputProcessor(menuScreen);
+        }
+        if (!remainMain) {
+            MenuScreen menuScreen = new MenuScreen(game,"Player 1 Won!");
+            game.setScreen(menuScreen);
+            //Gdx.input.setInputProcessor(menuScreen);
+        }
     }
 
     @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+<tileset version="1.4" tiledversion="1.4.3" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
  <properties>
   <property name="bomb" type="int" value="0"/>
   <property name="bottom_explosion" type="int" value="37"/>
@@ -497,7 +497,11 @@
    <property name="type" value="Item"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" name="effect_range" x="2" y="2" width="12.0909" height="11.9091"/>
+   <object id="1" name="effect_range" x="2" y="2" width="12.0909" height="11.9091">
+    <properties>
+     <property name="effect_type" value="SLOW_DOWN"/>
+    </properties>
+   </object>
   </objectgroup>
   <animation>
    <frame tileid="79" duration="100"/>
