@@ -17,7 +17,8 @@ public class DefaultPassiveEffectState implements PassiveEffectState {
 
     @Override
     public void addPassiveEffect(Effect effect) {
-        this.effectList.add(effect);
+        if (effect != null)
+            this.effectList.add(effect);
     }
 
     @Override

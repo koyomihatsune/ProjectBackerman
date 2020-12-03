@@ -6,7 +6,7 @@ public class EffectFactory {
     public static Effect createEffect(EffectType effectType) {
         switch (effectType) {
             case FAST_UP:
-                return null;
+                return new FastUpEffect();
             case EXPLOSION_NON_DUP:
                 return new Explosion(new Explode());
             case FIRE_BURN:
