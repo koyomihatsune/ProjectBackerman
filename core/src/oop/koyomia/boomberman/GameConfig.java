@@ -16,7 +16,7 @@ import java.util.List;
 
 public class GameConfig {
     public static final float unitScale = 3.0f;
-    public static final float CHARACTER_VELOCITY = 2.0f;
+    public static final float CHARACTER_VELOCITY = 1.3f;
     public static int map_width;
     public static int map_height;
     public static int tile_width;

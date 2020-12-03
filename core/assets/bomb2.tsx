@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+<tileset version="1.4" tiledversion="1.4.2" name="bomb2" tilewidth="16" tileheight="16" tilecount="100" columns="10">
  <properties>
   <property name="bomb" type="int" value="0"/>
   <property name="bottom_explosion" type="int" value="37"/>
+  <property name="box_died" type="int" value="81"/>
   <property name="center_explosion" type="int" value="27"/>
   <property name="horizontal_explosion" type="int" value="38"/>
   <property name="left_explosion" type="int" value="26"/>
@@ -16,7 +17,7 @@
    <property name="type" value="Bomb"/>
   </properties>
   <objectgroup draworder="index" id="3">
-   <object id="2" name="collision" x="4.3125" y="11.5" width="7.9375" height="4.5625"/>
+   <object id="2" name="collision" x="1.375" y="1.25" width="13.375" height="13.75"/>
   </objectgroup>
   <animation>
    <frame tileid="0" duration="200"/>
@@ -341,6 +342,16 @@
   </objectgroup>
  </tile>
  <tile id="53">
+  <properties>
+   <property name="type" value="Item"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
   <animation>
    <frame tileid="53" duration="200"/>
    <frame tileid="54" duration="200"/>
@@ -349,7 +360,62 @@
    <frame tileid="57" duration="200"/>
    <frame tileid="58" duration="200"/>
    <frame tileid="59" duration="200"/>
+   <frame tileid="53" duration="200"/>
   </animation>
+ </tile>
+ <tile id="54">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="55">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="56">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="57">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="58">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="59">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12">
+    <properties>
+     <property name="effect_type" value="FAST_UP"/>
+    </properties>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="60">
   <objectgroup draworder="index" id="2">
@@ -379,6 +445,12 @@
   </objectgroup>
  </tile>
  <tile id="63">
+  <properties>
+   <property name="type" value="Item"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="12" height="12.2727"/>
+  </objectgroup>
   <animation>
    <frame tileid="63" duration="100"/>
    <frame tileid="64" duration="100"/>
@@ -387,9 +459,46 @@
    <frame tileid="67" duration="100"/>
    <frame tileid="68" duration="100"/>
    <frame tileid="69" duration="100"/>
+   <frame tileid="63" duration="100"/>
   </animation>
  </tile>
+ <tile id="64">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="65">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="66">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="67">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="68">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="69">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
  <tile id="73">
+  <properties>
+   <property name="type" value="Item"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="12.0909" height="11.9091"/>
+  </objectgroup>
   <animation>
    <frame tileid="79" duration="100"/>
    <frame tileid="73" duration="100"/>
@@ -399,11 +508,50 @@
    <frame tileid="77" duration="100"/>
    <frame tileid="78" duration="100"/>
    <frame tileid="79" duration="100"/>
+   <frame tileid="73" duration="100"/>
   </animation>
  </tile>
+ <tile id="74">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="75">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="76">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="77">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="78">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="79">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="effect_range" x="2" y="2" width="11.9091" height="12"/>
+  </objectgroup>
+ </tile>
  <tile id="80">
+  <properties>
+   <property name="breakable" type="bool" value="true"/>
+   <property name="type" value="Box"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="collision" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="81">
   <animation>
-   <frame tileid="80" duration="200"/>
    <frame tileid="81" duration="200"/>
    <frame tileid="82" duration="200"/>
    <frame tileid="83" duration="200"/>

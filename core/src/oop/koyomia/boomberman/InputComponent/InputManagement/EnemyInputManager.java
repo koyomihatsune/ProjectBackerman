@@ -1,7 +1,6 @@
 package oop.koyomia.boomberman.InputComponent.InputManagement;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.ai.steer.behaviors.*;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.InputComponent.System.InputSystem;
 
@@ -44,14 +43,9 @@ public class EnemyInputManager implements InputManager {
 
     public void updateWorld(List<GameObject> world){
         System.out.println("World updated.");
-
-//        for (int i = 0; i < world.toArray().length; i++){
-//            System.out.println(world.get(i).toString());
-//        }\
-
         this.world = world;
         int rand = rant.nextInt(6);
-        System.out.println("State of movement: " + rand);
+        System.out.println(rand);
         move(rand);
 
         for (int i = 0; i< movementStack.size(); i++)
@@ -64,13 +58,8 @@ public class EnemyInputManager implements InputManager {
 
         oldX = self.getPhysicsState().getPhysicsBody().getX();
         oldY = self.getPhysicsState().getPhysicsBody().getY();
-        System.out.println("X coordination: " + oldX);
-        System.out.println("Y coordination: " + oldY);
 
     }
-
-    // public void checkDist(Main loc, Enemy loc);
-    // public void avoidBomb
 
     public void move(int input){
         switch (input) {

@@ -20,7 +20,7 @@ public class SlowDownEffect extends Effect {
     @Override
     public void execute(GameObject target, List<GameObject> world) {
         timer += Gdx.graphics.getDeltaTime();
-        System.out.println(this.hashCode() + " executed " + timer );
+        //System.out.println(this.hashCode() + "executed " + timer );
         super.execute(target, world);
         if (timer >= 5)
             this.setFinished(true);
