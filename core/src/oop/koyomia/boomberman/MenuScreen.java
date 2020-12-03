@@ -1,9 +1,6 @@
 package oop.koyomia.boomberman;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Color;
@@ -43,7 +40,8 @@ public class MenuScreen implements Screen {
     int bgx1;
     int bgy = -580;
     int ticks = 0;
-    boolean welcomeScreenFinished = true;
+    boolean welcomeScreenFinished = false;
+
 
     private class MenuButton {
         private String label;
@@ -104,6 +102,12 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(GameScene game){
         this.game = game;
+    }
+
+    public MenuScreen(GameScene game, String out){
+        this.game = game;
+        MENU_TITLE = out;
+        welcomeScreenFinished = true;
     }
 
 
@@ -189,10 +193,10 @@ public class MenuScreen implements Screen {
 
 
     public void drawBackground(){
-        game.batch.draw(background,bgx1+Gdx.graphics.getWidth(),bgy);
+        game.batch.draw(background,bgx1+1280,bgy);
         game.batch.draw(background,bgx1,bgy);
         bgx1--;
-        if (bgx1 <= -Gdx.graphics.getWidth()) {
+        if (bgx1 <= -1280) {
             bgx1 = 0;
         }
     }
@@ -410,8 +414,6 @@ public class MenuScreen implements Screen {
 
         ActivationList = new ArrayList<>() ;
         ActivationList.add(new ArrayList<>());
-        ActivationList.get(0).add(new MenuButton("Computer"));
-        ActivationList.get(0).get(0).setDisabled(true);
         ActivationList.get(0).add(new MenuButton("2 Players"));
         ActivationList.get(0).add(new MenuButton("<- Back"));
 
