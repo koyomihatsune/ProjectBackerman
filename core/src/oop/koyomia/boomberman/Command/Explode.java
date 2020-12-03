@@ -13,8 +13,8 @@ public class Explode implements Command {
     public void execute(List<GameObject> world, GameObject self) {
         switch (self.getType()) {
             case "Main" :
+            case "Enemy" :
                 if (concreteCommand == null) concreteCommand = new CharExplode();
-
                 break;
             case "Bomb" :
                 if (concreteCommand == null) concreteCommand = new DefaultBombExplode();

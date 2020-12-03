@@ -410,11 +410,9 @@ public class MenuScreen implements Screen {
 
         ActivationList = new ArrayList<>() ;
         ActivationList.add(new ArrayList<>());
-        ActivationList.get(0).add(new MenuButton("Level 1"));
-        ActivationList.get(0).add(new MenuButton("Level 2"));
-        ActivationList.get(0).add(new MenuButton("Level 3"));
-        ActivationList.get(0).add(new MenuButton("Level 4"));
-        ActivationList.get(0).add(new MenuButton("Level 5"));
+        ActivationList.get(0).add(new MenuButton("Computer"));
+        ActivationList.get(0).get(0).setDisabled(true);
+        ActivationList.get(0).add(new MenuButton("2 Players"));
         ActivationList.get(0).add(new MenuButton("<- Back"));
 
 
