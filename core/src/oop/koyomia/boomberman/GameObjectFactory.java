@@ -184,10 +184,10 @@ public class GameObjectFactory {
                 psystemF = new PhysicsSystemMovableFactory();
                 gstateF = new GraphicStateMovableFactory();
                 gsystemF = new GraphicSystemMovableFactory();
-                istateF = new MainCharInputStateFactory2();
-                isystemF = new InputSystemMovableFactory();
-                //istateF = new EnemyCharInputStateFactory();
-                //isystemF =InputSystemBot::new;
+                //istateF = new MainCharInputStateFactory2();
+                //isystemF = new InputSystemMovableFactory();
+                istateF = new EnemyCharInputStateFactory();
+                isystemF =InputSystemBot::new;
                 aestateF = new NonActiveEffectStateFactory();
                 aesystemF = new NonActiveEffectSystemFactory();
                 pestateF = new DefaultPassiveEffectStateFactory();
