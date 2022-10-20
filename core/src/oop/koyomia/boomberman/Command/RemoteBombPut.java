@@ -8,7 +8,6 @@ import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameConfig;
 import oop.koyomia.boomberman.GameObject.GameObject;
 import oop.koyomia.boomberman.GameObjectFactory;
-import org.graalvm.compiler.lir.LIRInstruction;
 
 import java.util.List;
 

@@ -44,6 +44,10 @@ public class MenuScreen implements Screen {
     int bgy = -580;
     int ticks = 0;
     boolean welcomeScreenFinished = true;
+//<<<<<<< Updated upstream
+//=======
+//
+//>>>>>>> Stashed changes
 
     private class MenuButton {
         private String label;
