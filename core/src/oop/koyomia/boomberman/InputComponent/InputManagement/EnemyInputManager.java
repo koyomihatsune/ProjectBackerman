@@ -44,7 +44,7 @@ public class EnemyInputManager implements InputManager {
         return this.keyDown;
     }
 
-    public void updateWorld(List<GameObject> world){
+    public void updateWorld(List<GameObject> world) {
         System.out.println("World updated.");
         this.world = world;
         int rand = rant.nextInt(6);
@@ -60,7 +60,7 @@ public class EnemyInputManager implements InputManager {
 //        System.out.print( movementStack.get(i) + " " );
 //        System.out.println();
 
-        if (movementStack.size() >= 4){
+        if (movementStack.size() >= 4) {
             movementStack.remove(0);
         }
 
@@ -75,18 +75,20 @@ public class EnemyInputManager implements InputManager {
          * Add game objects to graph
          */
         for (GameObject gameObject : world) {
-            if (gameObject != null && (!gameObject.getType().equals("Wall"))) {
-                System.out.println(gameObject.getIndex());
-                    this.graph.addGameObject(gameObject);
+            if (gameObject != null) {
+//                System.out.println(gameObject.getIndex());
+                this.graph.addGameObject(gameObject);
             }
-        }
 
-        for (int i = 0; i<world.size(); i++) {
-            if (i == world.size()-1) {
+        }
+        System.out.println("End Graphing");
+
+        for (int i = 0; i < world.size(); i++) {
+            System.out.println(world.get(i).getIndex() + ") " + world.get(i).getType());
+            if (i == world.size() - 1) {
                 System.out.println("connected");
                 this.graph.connectObject(world.get(i), world.get(0));
-            }
-            else {
+            } else {
                 this.graph.connectObject(world.get(i), world.get(i + 1));
             }
         }
@@ -104,8 +106,13 @@ public class EnemyInputManager implements InputManager {
         return graph.findPath(main, enemy);
     }
 
+    public void bombAvoidance(List<GameObject> world, List<GameObject> bombList) {
+        bombList = this.bombDetector(world);
 
-    public void move(int input){
+    }
+
+
+    public void move(int input) {
         switch (input) {
             case 0:
                 keyPress.clear();
@@ -113,7 +120,7 @@ public class EnemyInputManager implements InputManager {
                 System.out.println("Bot " + self.getProperties().hashCode() + " go down");
                 if (movementStack.peek() != 2) movementStack.push(2);
 
-                if (self.getPhysicsState().getPhysicsBody().getY()!= oldY)
+                if (self.getPhysicsState().getPhysicsBody().getY() != oldY)
                     break;
             case 2:
                 keyPress.clear();
@@ -127,7 +134,7 @@ public class EnemyInputManager implements InputManager {
                 keyPress.add(Input.Keys.A);
                 System.out.println("Bot " + self.getProperties().hashCode() + " go left");
                 if (movementStack.peek() != 3) movementStack.push(3);
-                if (self.getPhysicsState().getPhysicsBody().getX()!= oldX)
+                if (self.getPhysicsState().getPhysicsBody().getX() != oldX)
                     break;
             case 3:
                 keyPress.clear();
@@ -137,7 +144,7 @@ public class EnemyInputManager implements InputManager {
                 break;
             case 4:
                 keyPress.clear();
-                if (movementStack.size()>=2) {
+                if (movementStack.size() >= 2) {
                     keyDown.add(Input.Keys.SPACE);
                     move(movementStack.pop());
                     move(movementStack.pop());
@@ -163,4 +170,13 @@ public class EnemyInputManager implements InputManager {
         return null;
     }
 
+    public List<GameObject> bombDetector(List<GameObject> world) {
+        List<GameObject> bombList = null;
+        for (GameObject gameObject : world) {
+            if (gameObject.getType().equals("Bomb")) {
+                bombList.add(gameObject);
+            }
+        }
+        return bombList;
+    }
 }
