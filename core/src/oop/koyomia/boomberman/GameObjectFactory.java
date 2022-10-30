@@ -316,6 +316,7 @@ public class GameObjectFactory {
         gameObject.setEquipmentState(estateF.createInstance(gameObject));
         gameObject.setEquipmentSystem(esystemF.createInstance(gameObject));
         gameObject.setType(type);
+//        gameObject.setIndex(0);
         gameObject.getProperties().put("isAlive", true);
         for (Iterator<String> it = gameObject.getCell().getTile().getProperties().getKeys(); it.hasNext(); ) {
             String property = it.next();

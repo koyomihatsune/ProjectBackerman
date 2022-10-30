@@ -41,4 +41,19 @@ public class EquipmentStateDefault implements EquipmentState {
     public void restoreDefaultBomb(){
         ((DefaultBombPutEquipment)equipmentStack.get(0)).incBombRemain();
     }
+
+    @Override
+    public boolean isCooldown() {
+        return false;
+    }
+
+    @Override
+    public void countdown() {
+
+    }
+
+    @Override
+    public void setCooldownTimer(float value) {
+
+    }
 }

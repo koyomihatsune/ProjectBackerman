@@ -34,7 +34,7 @@ public class GameObject {
     protected EquipmentSystem equipmentSystem;
     protected EquipmentState equipmentState;
     protected HashMap<String, Object> properties;
-
+    public int index;
     public TiledMapTileLayerExt getCellLayer() {
         return cellLayer;
     }
@@ -47,6 +47,14 @@ public class GameObject {
         if (cell.getTile().getProperties().get("type") != null) type = (String) cell.getTile().getProperties().get("type");
         this.cell = cell;
         this.properties = new HashMap<>();
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public String getType() {
