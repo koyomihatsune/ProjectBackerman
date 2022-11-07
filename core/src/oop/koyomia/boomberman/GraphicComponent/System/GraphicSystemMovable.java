@@ -2,7 +2,7 @@ package oop.koyomia.boomberman.GraphicComponent.System;
 
 import oop.koyomia.boomberman.GDXLibExtend.AnimatedTiledMapTileExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
+import oop.koyomia.boomberman.InputComponent.InputManagement.AIComponent.State.GraphicState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

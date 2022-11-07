@@ -1,8 +1,7 @@
-package oop.koyomia.boomberman.GraphicComponent.State;
+package oop.koyomia.boomberman.InputComponent.InputManagement.AIComponent.State;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
-import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
 import java.util.HashMap;

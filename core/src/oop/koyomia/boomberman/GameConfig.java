@@ -6,8 +6,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
 import oop.koyomia.boomberman.GameObject.GameObject;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicStateMovable;
-import oop.koyomia.boomberman.PhysicsComponent.Factory.PhysicsSystemFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;

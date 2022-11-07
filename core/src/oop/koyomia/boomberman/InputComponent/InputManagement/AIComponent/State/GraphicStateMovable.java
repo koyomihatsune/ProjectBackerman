@@ -1,10 +1,9 @@
-package oop.koyomia.boomberman.GraphicComponent.State;
+package oop.koyomia.boomberman.InputComponent.InputManagement.AIComponent.State;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import oop.koyomia.boomberman.GameObject.GameObject;
 
-import java.awt.*;
 import java.util.HashMap;
 
 public class GraphicStateMovable extends  GraphicStateDefault {

@@ -4,7 +4,7 @@ import oop.koyomia.boomberman.ActiveEffectComponent.System.ActiveEffectSystem;
 import oop.koyomia.boomberman.EquipmentComponent.State.EquipmentState;
 import oop.koyomia.boomberman.EquipmentComponent.System.EquipmentSystem;
 import oop.koyomia.boomberman.GDXLibExtend.TiledMapTileLayerExt;
-import oop.koyomia.boomberman.GraphicComponent.State.GraphicState;
+import oop.koyomia.boomberman.InputComponent.InputManagement.AIComponent.State.GraphicState;
 import oop.koyomia.boomberman.GraphicComponent.System.GraphicSystem;
 import oop.koyomia.boomberman.InputComponent.State.InputState;
 import oop.koyomia.boomberman.InputComponent.System.InputSystem;

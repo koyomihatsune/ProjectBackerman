@@ -24,8 +24,22 @@ public class PathGraph implements IndexedGraph<GameObject> {
 
     private int lastNodeIndex = 0;
 
+//    public List<GameObject> bombDetector(List<GameObject> world) {
+//        List<GameObject> bombList = null;
+//        for (GameObject gameObject : world) {
+//            if (!gameObject.getType().equals("Bomb")) {
+//                bombList.add(gameObject);
+//            }
+//        }
+//        return bombList;
+//    }
+
     public void addGameObject(GameObject object) {
         object.setIndex(lastNodeIndex);
+//        List<GameObject> bombList = this.bombDetector(this.world);
+//        if (!bombList.contains(object)){
+//            objectList.add(object);
+//        }
         objectList.add(object);
         lastNodeIndex++;
     }
